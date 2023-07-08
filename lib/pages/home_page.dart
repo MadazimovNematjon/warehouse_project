@@ -17,7 +17,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
-
   @override
   void initState() {
     // TODO: implement initState
@@ -27,9 +26,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery
-        .of(context)
-        .size;
+    final Size _size = MediaQuery.of(context).size;
     return GetBuilder<ResponsiveController>(
         init: ResponsiveController(),
         builder: (controller) {
@@ -56,35 +53,39 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-
                           Expanded(
                             flex: 5,
                             child: Column(
                               children: [
+
                                 ResponsiveLayout(
-                                  mobileScaffold: GetBuilder<MyGridViewController>(
+                                  mobileScaffold: GetBuilder<
+                                      MyGridViewController>(
                                       init: MyGridViewController(),
                                       builder: (_controller) {
                                         return MyGridView(
-                                          crossAxisCount:   _size.width < 650
-                                              ? _controller.updateCrossAxisCount(2)
-                                              : _controller.updateCrossAxisCount(4),
+                                          crossAxisCount: _size.width < 650
+                                              ? _controller.crossAxisCount = 2
+                                              : _controller.crossAxisCount = 4,
                                           childAspectRatio: _size.width < 650
-                                              ? _controller.updateChildAspectRatio(1.3)
-                                              : _controller.updateChildAspectRatio(1),
+                                              ? _controller.childAspectRatio = 1.3
+                                              : _controller.childAspectRatio = 1
                                         );
                                       }),
-                                  tabletScaffold:  MyGridView(),
-                                  desktopScaffold: GetBuilder<MyGridViewController>(
+                                  tabletScaffold: MyGridView(),
+                                  desktopScaffold: GetBuilder<
+                                      MyGridViewController>(
                                       init: MyGridViewController(),
                                       builder: (_controller) {
                                         return MyGridView(
                                           childAspectRatio: _size.width < 1400
-                                              ? _controller.updateChildAspectRatio(1.1)
-                                              : _controller.updateChildAspectRatio(1.4),
+                                              ? _controller.childAspectRatio = 1.1
+                                              :_controller.childAspectRatio = 1.4,
+                                          crossAxisCount: _controller.crossAxisCount = 4
                                         );
                                       }),
                                 ),
+
                                 const SizedBox(
                                   height: defaultPadding,
                                 ),
@@ -97,7 +98,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                               ],
                             ),
                           ),
-
                           if (!controller.isMobile)
                             const SizedBox(width: defaultPadding),
                           if (!controller.isMobile)
@@ -107,8 +107,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                             ),
                         ],
                       ),
-
-
                     ],
                   ),
                 ),
@@ -118,3 +116,4 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         });
   }
 }
+

@@ -6,17 +6,17 @@ class MyGridViewController extends GetxController {
 
   @override
   void onInit() {
-    crossAxisCount = 4;
-    childAspectRatio = 1.0;
     super.onInit();
+    updateCrossAxisCount(4);
+    updateChildAspectRatio(1.0);
   }
 
-  updateCrossAxisCount(int count) {
+  void updateCrossAxisCount(int count) {
     crossAxisCount = count;
     update();
   }
 
-  updateChildAspectRatio(double aspectRatio) {
+  void updateChildAspectRatio(double aspectRatio) {
     childAspectRatio = aspectRatio;
     update();
   }

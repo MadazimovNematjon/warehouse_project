@@ -8,25 +8,23 @@ import '../utility/my_text_style.dart';
 import '../views/gridview_button.dart';
 
 class MyGridView extends StatelessWidget {
-   int crossAxisCount;
-   double childAspectRatio;
-  MyGridView({
-     this.crossAxisCount,
-     this.childAspectRatio,
-});
+    var crossAxisCount ;
+    var childAspectRatio;
+  MyGridView({this.crossAxisCount = 4,this.childAspectRatio = 1.0}
+);
 
-
-  // createDialogCallback() {
-  //   return Get.dialog(
-  //        AlertDialog(
-  //         backgroundColor: secondaryColor,
-  //         title: Text(
-  //           "Upload file",
-  //           style: TextStyle(color: Colors.white),
-  //         ),
-  //         content: CreateData(),
-  //       )
-  // }
+   createDialogCallback(BuildContext context) {
+      return Get.dialog(
+        AlertDialog(
+          backgroundColor: secondaryColor,
+          title: Text(
+            "Upload file",
+            style: TextStyle(color: Colors.white),
+          ),
+          content: CreateData(),
+        ),
+      );
+    }
 
 
   @override
@@ -48,20 +46,22 @@ class MyGridView extends StatelessWidget {
             title: "title1",
             image: "assets/images/upload.png",
             onPressed: () {
-              LogService.i(crossAxisCount.toString());
+              LogService.i(controller.crossAxisCount.toString());
             },
           ),
           gridviewButton(
             title: "title2",
             image: "assets/images/upload.png",
             onPressed: () {
-              LogService.i(childAspectRatio.toString());
+              LogService.i(controller.childAspectRatio.toString());
             },
           ),
           gridviewButton(
             title: "title3",
             image: "assets/images/upload.png",
-            onPressed: () {},
+            onPressed: () {
+              createDialogCallback(context);
+            },
           ),
           gridviewButton(
             title: "title4",

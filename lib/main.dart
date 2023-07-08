@@ -38,6 +38,7 @@ Future<void> main() async {
     appWindow.alignment = Alignment.center;
     appWindow.show();
   });
+
 }
 
 
