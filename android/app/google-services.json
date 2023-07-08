@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "670879574313",
+    "project_id": "sms-verificationdesktop",
+    "storage_bucket": "sms-verificationdesktop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670879574313:android:07be2f86f6b02dbb84af38",
+        "android_client_info": {
+          "package_name": "com.example.warehouse_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "670879574313-94usbmn65uh2elvssmullc71s50j9hge.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdMY1nekTAxQOr0WyUsSLb8kksdMl2pT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "670879574313-94usbmn65uh2elvssmullc71s50j9hge.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
