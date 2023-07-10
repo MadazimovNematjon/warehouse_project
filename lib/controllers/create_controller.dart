@@ -13,7 +13,7 @@ import 'home_controller.dart';
 class CreateController extends GetxController {
   final ImagePicker _imagePicker = ImagePicker();
   File? saveImage;
-  var items = [].obs;
+  var items = [];
   String quantityType = "kg";
   final productNameController = TextEditingController();
   final quantityController = TextEditingController();
@@ -32,7 +32,7 @@ class CreateController extends GetxController {
   }
 
   /// Base send function
-  void createNewContent() {
+   createNewContent() {
     if (saveImage == null) {
       // Handle if no image is selected
       return;
@@ -54,7 +54,7 @@ class CreateController extends GetxController {
   }
 
   /// Function that handles uploading the product data to the database
-  void _apiUploadProduct(String imageUrl) async {
+  _apiUploadProduct(String imageUrl) async {
     UserModel? user = await SecureStorage.getData();
     String name = productNameController.text.toString().trim();
     String quantity = quantityController.text.toString().trim();
@@ -94,7 +94,7 @@ class CreateController extends GetxController {
   }
 
   /// Function that posts the product data to the database
-  void _apiProduct(Content content) async {
+   _apiProduct(Content content) async {
     print("Posting data");
     await NetworkService.POST(
       NetworkService.API_CREATEPRO,
@@ -106,7 +106,7 @@ class CreateController extends GetxController {
   }
 
   /// Function that clears the page after data is posted
-  void clearPage(String value) {
+   clearPage(String value) {
     productNameController.clear();
     aboutController.clear();
     priceController.clear();

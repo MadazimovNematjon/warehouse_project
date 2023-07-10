@@ -13,19 +13,20 @@ class MyGridView extends StatelessWidget {
   MyGridView({this.crossAxisCount = 4,this.childAspectRatio = 1.0}
 );
 
-   createDialogCallback(BuildContext context) {
-      return Get.dialog(
-        AlertDialog(
+
+
+  void  showOpenDilog(BuildContext context) {
+    showDialog(context: context, builder: (_){
+        return const AlertDialog(
           backgroundColor: secondaryColor,
           title: Text(
             "Upload file",
             style: TextStyle(color: Colors.white),
           ),
           content: CreateData(),
-        ),
-      );
+        );
+      });
     }
-
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +61,7 @@ class MyGridView extends StatelessWidget {
             title: "title3",
             image: "assets/images/upload.png",
             onPressed: () {
-              createDialogCallback(context);
+              showOpenDilog(context);
             },
           ),
           gridviewButton(

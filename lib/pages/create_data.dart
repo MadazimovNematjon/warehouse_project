@@ -29,106 +29,101 @@ class _CreateDataState extends State<CreateData> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CreateController>(
-      init: CreateController(),
-        builder: (controller) {
-      return SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            GestureDetector(
-                onTap: controller.uploadImage(),
-                child: Container(
-                  width: 500.w,
-                  child: Get
-                      .find<CreateController>()
-                      .saveImage == null
-                      ? Image.asset(
-                    "assets/images/upload.png",
-                    color: Colors.white,
-                    width: 300.w,
-                    height: 300.h,
-                  )
-                      : Image.file(
-                    controller
-                        .saveImage!,
-                    height: 200,
-                    width: 200,
-                    fit: BoxFit.contain,
-                  ),
-                )),
-            const SizedBox(
-              height: 20,
-            ),
-            UploadTextField(
-                controller:controller
-                    .productNameController,
-                hintText: "Maxsulot nomi"),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Expanded(
-                    flex: 2,
-                    child: UploadTextField(
-                        keyboardType: TextInputType.number,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                        ],
-                        controller:controller
-                            .quantityController,
-                        hintText: "Maxsulot miqdori")),
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                      height: 58,
-                      decoration: BoxDecoration(
-                          border: Border.all(
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: GetBuilder<CreateController>(
+          init: CreateController(),
+          builder: (controller) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                GestureDetector(
+                    onTap: controller.uploadImage,
+                    child: Container(
+                      width: 500.w,
+                      child: controller.saveImage == null
+                          ? Image.asset(
+                              "assets/images/upload.png",
+                              color: Colors.white,
+                              width: 300.w,
+                              height: 300.h,
+                            )
+                          : Image.file(
+                              controller.saveImage!,
+                              height: 200,
+                              width: 200,
+                              fit: BoxFit.contain,
+                            ),
+                    )),
+                const SizedBox(
+                  height: 20,
+                ),
+                UploadTextField(
+                    controller: controller.productNameController,
+                    hintText: "Maxsulot nomi"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Expanded(
+                        flex: 2,
+                        child: UploadTextField(
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
+                            controller: controller.quantityController,
+                            hintText: "Maxsulot miqdori")),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                          height: 58,
+                          decoration: BoxDecoration(
+                              border: Border.all(
                             color: Colors.black26,
                             width: 1,
                           )),
-                      child: MyDropdownButton(controller,controller.quantityType)),
-                )
-              ],
-            ),
-            UploadTextField(
-                controller:controller
-                    .aboutController,
-                hintText: "Maxsulot haqida"),
-            UploadTextField(
-                controller: controller
-                    .priceController,
-                hintText: "Narxi"),
-            const SizedBox(
-              height: defaultPadding,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                    child: TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text(
-                          "cancel",
-                          style: MyTextStyle.textW600White20,
-                        ))),
-                Expanded(
-                    child: TextButton(
+                          child: MyDropdownButton(
+                              controller, controller.quantityType)),
+                    )
+                  ],
+                ),
+                UploadTextField(
+                    controller: controller.aboutController,
+                    hintText: "Maxsulot haqida"),
+                UploadTextField(
+                    controller: controller.priceController, hintText: "Narxi"),
+                const SizedBox(
+                  height: defaultPadding,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                        child: TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text(
+                              "cancel",
+                              style: MyTextStyle.textW600White20,
+                            ))),
+                    Expanded(
+                      child: TextButton(
                         onPressed: () {
                           controller.createNewContent();
                         },
                         child: Text(
                           "send",
                           style: MyTextStyle.textW600White20,
-                        ))),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
-            )
-          ],
-        ),
-      );
-    });
+            );
+          }),
+    );
   }
 }

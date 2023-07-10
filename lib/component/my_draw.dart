@@ -23,7 +23,25 @@ class _MyDrawerState extends State<MyDrawer> {
         color: secondaryColor,
       ),
       child: Column(
+
         children: [
+SizedBox(height: 60,),
+
+          Column(
+            children: [
+              Container(
+                height: 200,
+                width: 200,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(image: Image.asset("assets/images/user.jpg").image)
+                ),
+              )
+            ],
+          ),
+           
+           Center(child: Text("Innovatsion Texnologiyalari Markazi",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),)),
+
            MyButtonDrawer(
             onTap: () async{
               UserModel? user =  await SecureStorage.getData();

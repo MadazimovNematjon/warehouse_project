@@ -7,7 +7,7 @@ import '../component/my_container.dart';
 import '../component/my_gridview.dart';
 import '../responsive/responsive.dart';
 import '../utility/colors.dart';
-import 'information_card.dart';
+import 'user_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -92,18 +92,20 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                 MyContainer(),
                                 if (controller.isMobile)
                                   const SizedBox(height: defaultPadding),
-                                if (controller.isMobile)
-                                  const InformationCard(),
-                                const SizedBox(height: defaultPadding),
+
+                                // if (controller.isMobile)
+                                //   const UserPage(),
+                                // const SizedBox(height: defaultPadding),
+
                               ],
                             ),
                           ),
                           if (!controller.isMobile)
                             const SizedBox(width: defaultPadding),
                           if (!controller.isMobile)
-                            const Expanded(
+                             Expanded(
                               flex: 2,
-                              child: InformationCard(),
+                              child: UserPage(),
                             ),
                         ],
                       ),
