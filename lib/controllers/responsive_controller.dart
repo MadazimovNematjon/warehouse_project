@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:warehouse_project/services/log_service.dart';
 
 class ResponsiveController extends GetxController {
   var isMobile = false;
@@ -10,7 +9,7 @@ class ResponsiveController extends GetxController {
     if (screenWidth >= 1100) {
       isMobile = false;
       isTablet = false;
-      LogService.e("isDesktop $isDesktop");
+      // LogService.e("isDesktop $isDesktop");
 
       isDesktop = true;
       update();
@@ -18,10 +17,10 @@ class ResponsiveController extends GetxController {
       isMobile = false;
       isTablet = true;
       isDesktop = false;
-      LogService.e("isTablet $isTablet");
+      // LogService.e("isTablet $isTablet");
       update();
     } else {
-      LogService.e("isMobile $isMobile");
+      // LogService.e("isMobile $isMobile");
 
       isMobile = true;
       isTablet = false;

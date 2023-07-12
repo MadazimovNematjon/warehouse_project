@@ -1,5 +1,6 @@
 
 import 'dart:io';
+import 'package:warehouse_project/pages/sign_in.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:warehouse_project/utility/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'pages/main_screen.dart';
+import 'pages/main_screen_page.dart';
 import 'services/di_service.dart';
 
 
@@ -29,12 +30,12 @@ Future<void> main() async {
     await windowManager.show();
     await windowManager.focus();
   });
-  runApp(MyApp());
+  runApp(const MyApp());
 
   doWhenWindowReady(() {
     const initialSize = Size(408.0, 681.0);
     appWindow.minSize = initialSize;
-    appWindow.size = Size(600.0, 800.0);
+    appWindow.size = const Size(900.0, 800.0);
     appWindow.alignment = Alignment.center;
     appWindow.show();
   });

@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-
 import 'package:http/http.dart' as http;
-
+import 'package:warehouse_project/model/transaction_model.dart';
+import 'package:warehouse_project/model/user_profile_list_model.dart';
+import 'package:warehouse_project/services/log_service.dart';
 import '../model/image_model.dart';
 import '../model/product_model.dart';
 import '../model/user_model.dart';
+
 
 class NetworkService {
   static final dio = Dio();
@@ -21,24 +23,23 @@ class NetworkService {
   static const String API_IMAGE = "/attach/upload";
   static const String API_CREATEPRO = "/product/create";
   static const String API_GETLISTPRO = "/product/getListProduct";
+  static const String API_PROFILE_LIST =  "/profile/list";
 
 
-
-static Future<ProductModel?> fetchProductModel() async {
-  final response = await http.get(Uri.parse('http://192.168.20.49:8080/product/getListProduct?page=$currentPage&size=10'));
-  print("current $currentPage");
+  /*Pagebal product*/
+  static Future<ProductModel?> fetchProductModel() async {
+  final response = await http.get(Uri.parse('http://192.168.20.49:8080/product/getListProduct?page=0&size=10'));
 
   try{
     if (response.statusCode == 200) {
       final jsonData = json.decode(response.body);
-      print("objectjson ==== \n\n $jsonData\n");
       return ProductModel.fromJson(jsonData);
     }
   }catch(e){
-    print("fetchProductModel ERROR $e");
+    LogService.w(e.toString());
   }
+  return null;
 }
-
 
   static Future<String?> GET(String api, Map<String, dynamic> params) async {
     final uri = Uri.https(BASE, api, params);
@@ -47,28 +48,22 @@ static Future<ProductModel?> fetchProductModel() async {
 
     try {
       final response = await dio.get(uri.toString());
-      print("objectSSSSs====${response.data}");
-
       if (response.statusCode == 200) {
         return response.data;
       }
     } on DioError catch (e) {
       if (e.response != null) {
-        print('GET Error: ${e.response!.statusCode} - ${e.response!.data}');
+        LogService.d('GET Error: ${e.response!.statusCode} - ${e.response!.data}');
         return e.response!.data.toString();
       } else {
-        print('GET Error: ${e.error}');
-        return e.error.toString();
+       LogService.w('POST Error: ${e.error}');
       }
     }
 
     return null;
   }
-
-
-
-
-  static Future<String?> POST(String api, Map<String, String> params) async {
+/* POST */
+  static Future<String?> POST(String api, Map<String, dynamic> params) async {
     final uri = Uri.http(BASE, api);
     dio.options.headers = headers;
 
@@ -80,20 +75,15 @@ static Future<ProductModel?> fetchProductModel() async {
       }
     } on DioError catch (e) {
       if (e.response != null) {
-        print('POST Error: ${e.response!.statusCode} - ${e.response!.data}');
+       LogService.d('POST Error: ${e.response!.statusCode} - ${e.response!.data}');
         return e.response!.data.toString();
       } else {
-        print('POST Error: ${e.error}');
-        return e.error.toString();
+        LogService.w('POST Error: ${e.error}');
       }
     }
 
     return null;
   }
-
-
-
-
 
   static Map<String, String> paramsCreate(UserModel user) {
     final params = <String, String>{
@@ -105,8 +95,6 @@ static Future<ProductModel?> fetchProductModel() async {
     return params;
   }
 
-
-
   static Map<String, String> paramsSing(UserModel user) {
     final params = <String, String>{
       "email": user.email ?? "",
@@ -115,19 +103,16 @@ static Future<ProductModel?> fetchProductModel() async {
     return params;
   }
 
-
-    static Map<String,dynamic> paramsEmpty(){
+  static Map<String,dynamic> paramsEmpty(){
     Map<String,dynamic> params = {};
     return params;
   }
 
-
-
-  static Map<String,String> paramsProduct(Content content) {
-    Map<String,String> params=  {
+  static Map<String, dynamic> paramsProduct(Content content) {
+    Map<String,dynamic> params=  {
       "id": content.id ?? "",
       "productName": content.productName ?? "",
-      "createDate": content.createDate.toString() ?? "",
+      "createDate": content.createDate.toString(),
       "productAbout": content.productAbout ?? "",
       "product_quantity_type": content.product_quantity_type ?? "",
       "email": content.email ?? "",
@@ -151,7 +136,7 @@ static Future<ProductModel?> fetchProductModel() async {
     return params;
   }
 
-static Map<String,dynamic> paramsSort(Sort sort){
+  static Map<String,dynamic> paramsSort(Sort sort){
   Map<String,dynamic> params = <String,dynamic>{
       "sorted": sort.sorted,
   "empty": sort.empty,
@@ -160,6 +145,15 @@ static Map<String,dynamic> paramsSort(Sort sort){
     return params;
 }
 
+  static Map<String,dynamic> paramsTransaction(TransactionModel transaction){
+    Map<String,dynamic> params = {
+      "product_id": transaction.productId,
+      "quantityOfProduct": transaction.quantityOfProduct,
+      "sender_email": transaction.senderEmail,
+      "reciver_email": transaction.reciverEmail,
+    };
+    return params;
+  }
 
   static Map<String, String> paramsImage(ImageModel image) {
     final params = <String, String>{
@@ -168,30 +162,40 @@ static Map<String,dynamic> paramsSort(Sort sort){
     return params;
   }
 
+  // static Map<String,dynamic>? paramProfileList(ProfileListModel profile){
+  //   Map<String,String> params = {
+  //     "id": profile.id.toString() ?? "",
+  //     "name": profile.name ?? "",
+  //     "surname": profile.surname ?? "",
+  //     "email": profile.email ?? "",
+  //     "role": profile.role ?? "",
+  //   };
+  //   return params;
+  // }
+  // static List<ProfileListModel> parseProfileList(String response) {
+  //   dynamic json = jsonDecode(response);
+  //   var data = List<ProfileListModel>.from(
+  //       json.map((x) => ProfileListModel.fromJson(x)));
+  //   LogService.i(data.toString());
+  //   return data;
+  // }
 
-
-// static Future fetchData() async {
-//   List<Content> items = [];
-//   final pro = await NetworkService.fetchProductModel();
-//   if (pro != null) {
-//     final productList = List<Content>.from(pro.content!.map((json) => Content.fromJson(json.toJson())));
-//     // this.productList = productList;
-//     for (var product in productList) {
-//       items.add(product);
-//     }
-//     return items;
-//   }
-//   return [];
-// }
-
-  static Future<List<Content>> fetchData() async {
-    final pro = await NetworkService.fetchProductModel();
-    if (pro != null) {
-      final productList = List<Content>.from(pro.content!.map((json) => Content.fromJson(json.toJson())));
-      return productList;
+  static List<ProfileListModel> parseProfileList(String response) {
+    List<ProfileListModel> data = [];
+    try {
+      dynamic json = jsonDecode(response);
+      if (json is List) {
+        data = json.map((x) => ProfileListModel.fromJson(x)).toList();
+        LogService.i(data.toString());
+      } else {
+        LogService.e('Invalid JSON format for profile list');
+      }
+    } catch (e) {
+      LogService.e('Error parsing profile list: $e');
     }
-    return [];
+    return data;
   }
+
 
 }
 

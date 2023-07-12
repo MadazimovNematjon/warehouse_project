@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:warehouse_project/services/log_service.dart';
 import '../model/product_model.dart';
 import '../model/user_model.dart';
 import '../services/file_service.dart';
@@ -71,11 +72,11 @@ class CreateController extends GetxController {
       print("_apiUploadProduct $imageUrl");
 
       Content content = Content(
-        ownerProfileId: user!.id,
+        ownerProfileId: "2",
         productName: name,
         quantity: quantity,
         productAbout: about,
-        email: user.email,
+        email: "nemat@gmail.com",
         price: price,
         image_url: imageUrl,
         product_quantity_type: quantityType,
@@ -94,8 +95,7 @@ class CreateController extends GetxController {
   }
 
   /// Function that posts the product data to the database
-   _apiProduct(Content content) async {
-    print("Posting data");
+  void _apiProduct(Content content) async {
     await NetworkService.POST(
       NetworkService.API_CREATEPRO,
       NetworkService.paramsProduct(content),
@@ -112,8 +112,9 @@ class CreateController extends GetxController {
     priceController.clear();
     quantityController.clear();
     print("Data cleared: $value");
-    print("Fetched data: ${NetworkService.fetchData()}");
-    Get.find<HomeController>().getData();
+    Get.find<HomeController>().fetchData();
+    LogService.d("${Get.find<HomeController>().fetchData}");
+    Get.back();
     update();
-  }
+   }
 }

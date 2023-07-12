@@ -2,30 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '../component/upload_text_field.dart';
 import '../controllers/create_controller.dart';
 import '../utility/colors.dart';
 import '../utility/my_text_style.dart';
-import '../views/my_dropdown_button.dart';
+import '../component/my_dropdown_button.dart';
 
-class CreateData extends StatefulWidget {
+class CreateData extends StatelessWidget {
   const CreateData({
     Key? key,
   }) : super(key: key);
 
   static String get id => "upload_data";
-
-  @override
-  State<CreateData> createState() => _CreateDataState();
-}
-
-class _CreateDataState extends State<CreateData> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

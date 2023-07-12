@@ -5,10 +5,7 @@ import 'package:warehouse_project/component/my_text_field.dart';
 import 'package:warehouse_project/controllers/user_contoller.dart';
 import 'package:warehouse_project/utility/my_text_style.dart';
 
-import '../component/chart.dart';
-import '../component/upload_text_field.dart';
 import '../utility/colors.dart';
-import '../component/storage_info_card.dart';
 
 class UserPage extends StatefulWidget {
    UserPage({Key? key,}) : super(key: key);

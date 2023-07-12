@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/responsive_controller.dart';
-import '../services/log_service.dart';
 
 class ResponsiveLayout extends StatelessWidget {
   final Widget mobileScaffold;
@@ -21,16 +20,16 @@ class ResponsiveLayout extends StatelessWidget {
       init: ResponsiveController(),
         builder: (controller) {
         if (controller.isDesktop) {
-          print("");
-          LogService.i("desktop $desktopScaffold");
+          // print("");
+          // LogService.i("desktop $desktopScaffold");
           return desktopScaffold;
         } else if (controller.isTablet) {
-         print("tab");
-         LogService.i("tab $tabletScaffold");
+         // print("tab");
+         // LogService.i("tab $tabletScaffold");
          return tabletScaffold;
         } else {
-          print("mobile");
-          LogService.i("mobile $mobileScaffold");
+          // print("mobile");
+          // LogService.i("mobile $mobileScaffold");
           return mobileScaffold;
         }
       });

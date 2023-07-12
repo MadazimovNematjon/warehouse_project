@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:warehouse_project/services/log_service.dart';
 
 import '../model/user_model.dart';
 
@@ -16,7 +17,7 @@ class SecureStorage{
 
     // Save the JSON string in secure storage
     await storage.write(key: 'data', value: jsonString);
-    print("Saved account");
+    LogService.i("Saved Account");
   }
 
 
@@ -47,8 +48,8 @@ class SecureStorage{
           return user;
         }
       } catch (e, stackTrace) {
-        print('Error parsing JSON: $e');
-        print(stackTrace);
+        LogService.w(e.toString());
+        LogService.w(stackTrace.toString());
       }
     }
 

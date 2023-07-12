@@ -57,7 +57,7 @@ class ProductModel {
 
 
 class Content {
-  String? id;
+  int? id;
   String? ownerProfileId;
   String? productName;
   String? createDate;
@@ -83,7 +83,7 @@ class Content {
 
   factory Content.fromJson(Map<String, dynamic> json) {
     return Content(
-      id: json["id"].toString(),
+      id: json["id"],
       productName: json["productName"].toString(),
       createDate: json["createDate"].toString(),
       productAbout: json["productAbout"],

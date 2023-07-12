@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:warehouse_project/controllers/home_controller.dart';
 import 'package:warehouse_project/controllers/responsive_controller.dart';
 import '../component/my_draw.dart';
 import '../responsive/responsive.dart';
@@ -8,9 +9,23 @@ import '../utility/colors.dart';
 import '../utility/my_text_style.dart';
 import 'home_page.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
   static String get id => "main_screen";
 
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Get.find<HomeController>().fetchData();
+  }
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ResponsiveController>(

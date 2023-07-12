@@ -60,15 +60,16 @@ class MyContainer extends StatelessWidget {
           GetBuilder<HomeController>(
             init: HomeController(),
             builder: (controller) {
-              return ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: controller.items.length,
-                itemBuilder: (context, index) {
-                  Content content = controller.items[index];
-                  return itemOfHome(controller, content);
-                },
-              );
+
+                return ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: controller.items.length,
+                  itemBuilder: (context, index) {
+                    Content content = controller.items[index];
+                    return itemOfHome(controller, content);
+                  },
+                );
             },
           ),
           const SizedBox(

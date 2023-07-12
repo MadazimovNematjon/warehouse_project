@@ -1,5 +1,3 @@
-
-
 import 'dart:ui';
 
 const kDefaultBackgroundColor = Color(0xFF111219);

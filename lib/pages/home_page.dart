@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:warehouse_project/controllers/grid_view_controller.dart';
 import 'package:warehouse_project/controllers/responsive_controller.dart';
+import 'package:warehouse_project/model/product_model.dart';
+import 'package:warehouse_project/services/log_service.dart';
 import '../component/header.dart';
 import '../component/my_container.dart';
 import '../component/my_gridview.dart';
+import '../controllers/home_controller.dart';
 import '../responsive/responsive.dart';
+import '../responsive/size_config.dart';
 import '../utility/colors.dart';
+import '../utility/my_text_style.dart';
+import '../views/item_of_home.dart';
 import 'user_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,12 +27,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // Get.find<HomeController>().getData();
+    Get.find<HomeController>().fetchData();
+    LogService.i("${Get.find<HomeController>().fetchData()}");
   }
 
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
     return GetBuilder<ResponsiveController>(
         init: ResponsiveController(),
         builder: (controller) {
@@ -64,10 +71,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                       init: MyGridViewController(),
                                       builder: (_controller) {
                                         return MyGridView(
-                                          crossAxisCount: _size.width < 650
+                                          crossAxisCount: size.width < 650
                                               ? _controller.crossAxisCount = 2
                                               : _controller.crossAxisCount = 4,
-                                          childAspectRatio: _size.width < 650
+                                          childAspectRatio: size.width < 650
                                               ? _controller.childAspectRatio = 1.3
                                               : _controller.childAspectRatio = 1
                                         );
@@ -78,7 +85,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                       init: MyGridViewController(),
                                       builder: (_controller) {
                                         return MyGridView(
-                                          childAspectRatio: _size.width < 1400
+                                          childAspectRatio: size.width < 1400
                                               ? _controller.childAspectRatio = 1.1
                                               :_controller.childAspectRatio = 1.4,
                                           crossAxisCount: _controller.crossAxisCount = 4
