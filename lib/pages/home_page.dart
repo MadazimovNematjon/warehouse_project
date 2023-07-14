@@ -5,7 +5,7 @@ import 'package:warehouse_project/controllers/responsive_controller.dart';
 import 'package:warehouse_project/model/product_model.dart';
 import 'package:warehouse_project/services/log_service.dart';
 import '../component/header.dart';
-import '../component/my_container.dart';
+import '../component/product_list_container.dart';
 import '../component/my_gridview.dart';
 import '../controllers/home_controller.dart';
 import '../responsive/responsive.dart';
@@ -22,14 +22,15 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    Get.find<HomeController>().fetchData();
-    LogService.i("${Get.find<HomeController>().fetchData()}");
-  }
+class _HomePageState extends State<HomePage> {
+  //
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   // Get.find<HomeController>().fetchData();
+  //   LogService.i("${Get.find<HomeController>().fetchData()}");
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +97,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                 const SizedBox(
                                   height: defaultPadding,
                                 ),
-                                MyContainer(),
+                                ProductList(),
                                 if (controller.isMobile)
                                   const SizedBox(height: defaultPadding),
 

@@ -7,7 +7,6 @@ class TransactionModel {
   TransactionModel({
     this.productId,
     this.quantityOfProduct,
-
     this.senderEmail,
     this.reciverEmail,
   });
@@ -25,5 +24,4 @@ class TransactionModel {
     "sender_email": senderEmail,
     "reciver_email": reciverEmail,
   };
-
 }

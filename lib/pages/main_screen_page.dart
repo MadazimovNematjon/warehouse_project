@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:warehouse_project/controllers/home_controller.dart';
 import 'package:warehouse_project/controllers/responsive_controller.dart';
+import 'package:warehouse_project/controllers/user_contoller.dart';
+import 'package:warehouse_project/pages/user_page.dart';
 import '../component/my_draw.dart';
 import '../responsive/responsive.dart';
 import '../utility/colors.dart';
@@ -19,13 +21,27 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+
+  // getData() async {
+  //  ConstrainedBox(constraints: const BoxConstraints(
+  //    maxWidth: 1920,
+  //    maxHeight: 1080
+  //  ),
+  //      child: await Get.find<HomeController>().fetchData(),
+  //  );
+  // }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    // getData();
     Get.find<HomeController>().fetchData();
+
   }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ResponsiveController>(
@@ -33,6 +49,7 @@ class _MainScreenState extends State<MainScreen> {
         final screenWidth = MediaQuery.of(context).size.width;
         controller.determineLayout(screenWidth);
         return Scaffold(
+          key: _scaffoldKey,
           appBar: controller.isMobile || controller.isTablet
               ? AppBar(
             title: Text(
@@ -42,15 +59,15 @@ class _MainScreenState extends State<MainScreen> {
             elevation: 0,
             backgroundColor: Colors.transparent,
             actions: [
-              const Expanded(
-                flex: 3,
-                child: SizedBox(
-                  width: 90,
-                ),
-              ),
+              // const Expanded(
+              //   flex: 3,
+              //   child: SizedBox(
+              //     width: 90,
+              //   ),
+              // ),
               Center(
                 child: Container(
-                  width: 600.w,
+                  width: 400.w,
                   height: 50,
                   decoration: BoxDecoration(
                     borderRadius:
@@ -74,6 +91,12 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                 ),
               ),
+              const SizedBox(width: 5,),
+              if(controller.isMobile)
+              IconButton(onPressed: (){
+                _scaffoldKey.currentState!.openEndDrawer();
+              }, icon:const Icon(Icons.account_circle_sharp,color: Colors.white,size: 40,),),
+
               const SizedBox(
                 width: defaultPadding,
               ),
@@ -88,11 +111,11 @@ class _MainScreenState extends State<MainScreen> {
 
                 flex: 5,
                 child: ResponsiveLayout(
-                  mobileScaffold: HomePage(),
+                  mobileScaffold: const HomePage(),
                   // Replace with your mobile layout widget
-                  tabletScaffold: HomePage(),
+                  tabletScaffold: const HomePage(),
                   // Replace with your tablet layout widget
-                  desktopScaffold: HomePage(),
+                  desktopScaffold: const HomePage(),
                   // Replace with your desktop layout widget
                 ),
               ),
@@ -101,6 +124,11 @@ class _MainScreenState extends State<MainScreen> {
           drawer: controller.isMobile || controller.isTablet
               ? const MyDrawer()
               : const SizedBox.shrink(),
+
+          endDrawer: controller.isMobile ? Container(
+            width: 300,
+             child: UserPage(),
+          ) : const SizedBox.shrink(),
         );
       },
     );

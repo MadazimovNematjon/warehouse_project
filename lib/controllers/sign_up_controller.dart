@@ -44,7 +44,7 @@ class SignUpController extends GetxController{
   dataSave(String data){
     SecureStorage.saveData({'response': data});// Storing the string in a map with a key 'response'
 
-      Get.off(const MainScreen());
+      // Get.off(const MainScreen());
       update();
 
   }

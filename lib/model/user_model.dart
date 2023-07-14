@@ -13,7 +13,7 @@ class UserModel {
     this.name,
     this.surname,
     required this.email,
-    required this.password,
+    this.password,
     this.createdDate,
   });
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:warehouse_project/services/log_service.dart';
 
 import '../model/user_model.dart';
 import '../services/save_secure_storage.dart';
 import '../utility/colors.dart';
 import 'my_button_draw.dart';
-
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({Key? key}) : super(key: key);
@@ -23,29 +23,41 @@ class _MyDrawerState extends State<MyDrawer> {
         color: secondaryColor,
       ),
       child: Column(
-
         children: [
-SizedBox(height: 60,),
-
-          Column(
-            children: [
-              Container(
-                height: 200,
-                width: 200,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(image: Image.asset("assets/images/user.jpg").image)
-                ),
-              )
-            ],
+          const SizedBox(
+            height: 60,
           ),
-           
-           Center(child: Text("Innovatsion Texnologiyalari Markazi",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),)),
 
-           MyButtonDrawer(
-            onTap: () async{
-              UserModel? user =  await SecureStorage.getData();
-              print("user ${user!.id}");
+          Container(
+            margin: const EdgeInsets.only(left: 20,right: 20),
+            child: Column(
+              children: [
+                Container(
+                  height: 200,
+                  width: 200,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          image: Image.asset("assets/images/logo.png").image)),
+                )
+              ],
+            ),
+          ),
+
+          Container(
+            margin: const EdgeInsets.only(top: 20,left: 20,right: 20),
+            child: const Center(
+                child: Text(
+              "Innovatsion Texnologiyalari Markazi",textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+            )),
+          ),
+
+          MyButtonDrawer(
+            onTap: () async {
+              UserModel? user = await SecureStorage.getData();
+              LogService.i("user ${user!.id} ${user.name}  ${user.email}");
             },
             title: "Profile",
             icon: Icons.person,

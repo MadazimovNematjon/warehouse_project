@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:warehouse_project/responsive/size_config.dart';
 import 'package:warehouse_project/services/log_service.dart';
 import '../model/product_model.dart';
 import '../model/user_model.dart';
@@ -20,6 +22,11 @@ class CreateController extends GetxController {
   final quantityController = TextEditingController();
   final aboutController = TextEditingController();
   final priceController = TextEditingController();
+
+  updateValue(String newValue){
+    quantityType = newValue;
+    update();
+  }
 
   /// Select a picture from the gallery
   uploadImage() async {
@@ -57,6 +64,7 @@ class CreateController extends GetxController {
   /// Function that handles uploading the product data to the database
   _apiUploadProduct(String imageUrl) async {
     UserModel? user = await SecureStorage.getData();
+
     String name = productNameController.text.toString().trim();
     String quantity = quantityController.text.toString().trim();
     String about = aboutController.text.toString().trim();
@@ -72,11 +80,11 @@ class CreateController extends GetxController {
       print("_apiUploadProduct $imageUrl");
 
       Content content = Content(
-        ownerProfileId: "2",
+        ownerProfileId: user!.id,
         productName: name,
         quantity: quantity,
         productAbout: about,
-        email: "nemat@gmail.com",
+        email: user.email,
         price: price,
         image_url: imageUrl,
         product_quantity_type: quantityType,
@@ -111,10 +119,17 @@ class CreateController extends GetxController {
     aboutController.clear();
     priceController.clear();
     quantityController.clear();
-    print("Data cleared: $value");
-    Get.find<HomeController>().fetchData();
-    LogService.d("${Get.find<HomeController>().fetchData}");
+    initTimer();
     Get.back();
     update();
+   }
+
+ void initTimer(){
+    Timer(Duration(seconds: 2), () {
+      Get.find<HomeController>().fetchData();
+      LogService.d("${Get.find<HomeController>().fetchData}");
+      Get.find<HomeController>().items;
+      update();
+    });
    }
 }

@@ -33,22 +33,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
-  awesome_notifications:
-    dependency: transitive
-    description:
-      name: awesome_notifications
-      sha256: "2b430c75cc879d6cfd52bb6eb2b5c1591ed425347816408cdcbd3f6916bba14c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.4+1"
-  awesome_notifications_fcm:
-    dependency: "direct main"
-    description:
-      name: awesome_notifications_fcm
-      sha256: "3bcfc54360128bd9a83f558c6652681d58ba158a5237f15536fd4c6da46d99f2"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.4+1"
   bitsdojo_window:
     dependency: "direct main"
     description:
@@ -153,22 +137,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
-  dbus:
-    dependency: transitive
-    description:
-      name: dbus
-      sha256: "6f07cba3f7b3448d42d015bfd3d53fe12e5b36da2423f23838efc1d5fb31a263"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.8"
-  desktop_notifications:
-    dependency: "direct main"
-    description:
-      name: desktop_notifications
-      sha256: "6d92694ad6e9297a862c5ff7dd6b8ff64c819972557754769f819d2209612927"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.6.3"
   dio:
     dependency: "direct main"
     description:
@@ -233,30 +201,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.9.3"
-  firebase_core:
-    dependency: transitive
-    description:
-      name: firebase_core
-      sha256: a4a99204da264a0aa9d54a332ea0315ce7b0768075139c77abefe98093dd98be
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.14.0"
-  firebase_core_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_core_platform_interface
-      sha256: b63e3be6c96ef5c33bdec1aab23c91eb00696f6452f0519401d640938c94cba2
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.8.0"
-  firebase_core_web:
-    dependency: transitive
-    description:
-      name: firebase_core_web
-      sha256: "0fd5c4b228de29b55fac38aed0d9e42514b3d3bd47675de52bf7f8fccaf922fa"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.6.0"
   fl_chart:
     dependency: "direct main"
     description:
@@ -464,14 +408,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1"
-  intl:
-    dependency: transitive
-    description:
-      name: intl
-      sha256: "910f85bce16fb5c6f614e117efa303e85a1731bb0081edf3604a2ae6e9a3cc91"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.17.0"
   js:
     dependency: transitive
     description:
@@ -593,7 +529,7 @@ packages:
     source: hosted
     version: "2.2.0"
   rxdart:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: rxdart
       sha256: "0c7c0cedd93788d996e33041ffecda924cc54389199cde4e6a34b440f50044cb"
@@ -616,6 +552,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.8.3"
+  simple_email_sender:
+    dependency: "direct main"
+    description:
+      name: simple_email_sender
+      sha256: "834b2b69db77b9584e53a8c55bc42fc2a44ca0c321cc0942525fa1b23ab612ee"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   sky_engine:
     dependency: transitive
     description: flutter

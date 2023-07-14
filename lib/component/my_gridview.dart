@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:warehouse_project/controllers/alter_dialog_controller.dart';
 import 'package:warehouse_project/controllers/grid_view_controller.dart';
 import 'package:warehouse_project/controllers/notification_controller.dart';
-import 'package:warehouse_project/pages/transaction_page.dart';
+import 'package:warehouse_project/model/notification_product.dart';
 import 'package:warehouse_project/services/log_service.dart';
-import '../pages/create_data_page.dart';
 import '../utility/colors.dart';
 import '../views/gridview_button.dart';
 
@@ -15,32 +15,6 @@ class MyGridView extends StatelessWidget {
 
   MyGridView({this.crossAxisCount = 4, this.childAspectRatio = 1.0});
 
-
-  void showCreateContentDialog(BuildContext context) {
-    showDialog(context: context, builder: (_) {
-      return const AlertDialog(
-        backgroundColor: secondaryColor,
-        title: Text(
-          "Upload file",
-          style: TextStyle(color: Colors.white),
-        ),
-        content: CreateData(),
-      );
-    });
-  }
-
-  void showTransactionDialog(BuildContext context) {
-    showDialog(context: context, builder: (_) {
-      return const AlertDialog(
-        backgroundColor: secondaryColor,
-        title: Text(
-          "Transaction",
-          style: TextStyle(color: Colors.white),
-        ),
-        content: TransactionPage(),
-      );
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,37 +32,55 @@ class MyGridView extends StatelessWidget {
             ),
             children: [
               GetBuilder<NotificationController>(
-                init: NotificationController(),
+                  init: NotificationController(),
+                  builder: (controller) {
+                    return gridviewButton(
+                      title: "title1",
+                      image: "assets/images/create.png",
+                      onPressed: () {
+                        controller.sendEmail();
+                        final alter = Get.find<AlterDialogController>();
+
+                          LogService.i("${controller.items.length}");
+                          // NotificationProduct item = controller.items;
+                          // alter.showItemNotificationAlterDialog(context, item);
+                      },
+                    );
+                  }),
+
+              GetBuilder<AlterDialogController>(
+                init: AlterDialogController(),
                   builder: (controller) {
                 return gridviewButton(
-                  title: "title1",
-                  image: "assets/images/upload.png",
+                  title: "title2",
+                  image: "assets/images/create.png",
                   onPressed: () {
-                    controller.notification();
+
                   },
                 );
               }),
-              gridviewButton(
-                title: "title2",
-                image: "assets/images/upload.png",
-                onPressed: () {
-                  LogService.i(controller.childAspectRatio.toString());
-                },
-              ),
-              gridviewButton(
-                title: "title3",
-                image: "assets/images/upload.png",
-                onPressed: () {
-                  showCreateContentDialog(context);
-                },
-              ),
-              gridviewButton(
-                title: "title4",
-                image: "assets/images/upload.png",
-                onPressed: () {
-                  showTransactionDialog(context);
-                },
-              ),
+              GetBuilder<AlterDialogController>(
+                  init: AlterDialogController(),
+                  builder: (controller) {
+                    return gridviewButton(
+                      title: "Create Product",
+                      image: "assets/images/create.png",
+                      onPressed: () {
+                        controller.showCreateContentDialog(context);
+                      },
+                    );
+                  }),
+              GetBuilder<AlterDialogController>(
+                  init: AlterDialogController(),
+                  builder: (controller) {
+                    return gridviewButton(
+                      title: "Transaction",
+                      image: "assets/images/transaction.png",
+                      onPressed: () {
+                        controller.showTransactionDialog(context);
+                      },
+                    );
+                  }),
             ],
           );
         });

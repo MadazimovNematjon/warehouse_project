@@ -23,8 +23,8 @@ Widget gridviewButton({
             child: Image.asset(
               image,
               color: Colors.white70,
-              height: 150,
-              width: 150,
+              height: 100,
+              width: 100,
             ),
           ),
           const SizedBox(height: defaultPadding),
@@ -32,7 +32,7 @@ Widget gridviewButton({
             flex: 1,
             child: Text(
               title,
-              style: MyTextStyle.text16,
+              style: MyTextStyle.textWhite16,
             ),
           ),
         ],

@@ -6,6 +6,7 @@ import 'package:warehouse_project/controllers/sign_in_controller.dart';
 import 'package:warehouse_project/pages/sign_up.dart';
 import '../component/my_text_field.dart';
 import '../utility/colors.dart';
+import 'main_screen_page.dart';
 
 
 class SignIn extends StatefulWidget {
@@ -72,9 +73,11 @@ class _SignInState extends State<SignIn> {
                             height: 15,
                           ),
 
-/* Button */
+                            /* Button */
                           GestureDetector(
-                            onTap: controller.doSignIn,
+                            onTap: (){
+                             controller.doSignIn();
+                            },
                             child: Container(
                               height: 45,
                               width: 150,

@@ -10,14 +10,14 @@ Widget MyDropdownButton(CreateController controller,String quantityType) {
     icon: const Icon(Icons.arrow_downward),
     iconSize: 24,
     elevation: 16,
-    style: TextStyle(fontSize: 20, color: Colors.white),
-    underline: SizedBox.shrink(),
+    style: const TextStyle(fontSize: 20, color: Colors.white),
+    underline: const SizedBox.shrink(),
     focusColor: secondaryColor,
     dropdownColor: secondaryColor,
-    padding: EdgeInsets.all(5),
+    padding: const EdgeInsets.all(5),
     onChanged: (String? newValue) {
       if (newValue != null) {
-        controller.quantityType = newValue;
+        controller.updateValue(newValue);
       }
     },
     items: const <DropdownMenuItem<String>>[

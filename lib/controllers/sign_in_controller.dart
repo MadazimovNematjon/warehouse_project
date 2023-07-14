@@ -21,7 +21,7 @@ class SignInController extends GetxController{
     var member = UserModel(email: gmail, password: password);
 
     await NetworkService.POST(
-        NetworkService.API_SIGNIN, NetworkService.paramsSing(member))
+        NetworkService.API_SIGNIN, NetworkService.paramsAuth(member))
         .then((data) => getValue(data!));
   }
 
@@ -31,6 +31,11 @@ class SignInController extends GetxController{
      LogService.i(data);
       Get.off(const MainScreen());
     }
+  }
+
+ void next(){
+    Get.off(()=>MainScreen(),transition: Transition.downToUp,duration: Duration(seconds: 2));
+   update();
   }
 
 }

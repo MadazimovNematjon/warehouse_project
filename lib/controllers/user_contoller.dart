@@ -4,10 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:warehouse_project/model/user_model.dart';
+import 'package:warehouse_project/pages/user_page.dart';
 import 'package:warehouse_project/services/file_service.dart';
 import 'package:warehouse_project/services/save_secure_storage.dart';
 
 class UserController extends GetxController{
+ UserModel? user;
 
   final ImagePicker _imagePicker = ImagePicker();
   File? saveImage;
@@ -18,6 +20,13 @@ class UserController extends GetxController{
   final phoneController = TextEditingController();
 
   bool hidden = false;
+
+
+  @override
+  void onInit() {
+    super.onInit();
+    userData();
+  }
 
   uploadImage() async {
     XFile? image = await _imagePicker.pickImage(
@@ -30,7 +39,7 @@ class UserController extends GetxController{
   }
 
   /// Base send function
-  void createNewContent() {
+  void createNeupwContent() {
     if (saveImage == null) {
       // Handle if no image is selected
       return;
@@ -73,5 +82,16 @@ class UserController extends GetxController{
     hidden = !hidden;
     update();
   }
+
+ void openAccount(){
+    Get.off(()=>UserPage(),transition: Transition.upToDown,duration: Duration(seconds: 2));
+    update();
+  }
+
+  Future<void> userData() async {
+    user = await SecureStorage.getData();
+    update();
+  }
+
 
 }

@@ -31,7 +31,7 @@ class CreateData extends StatelessWidget {
                       width: 500.w,
                       child: controller.saveImage == null
                           ? Image.asset(
-                              "assets/images/upload.png",
+                              "assets/images/create.png",
                               color: Colors.white,
                               width: 300.w,
                               height: 300.h,

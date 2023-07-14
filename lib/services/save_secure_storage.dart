@@ -9,7 +9,7 @@ class SecureStorage{
 
 
 
-  static final storage = FlutterSecureStorage();
+  static const storage = FlutterSecureStorage();
 
   static Future<void> saveData(Map<String, dynamic> data) async {
     // Convert the map to a JSON string

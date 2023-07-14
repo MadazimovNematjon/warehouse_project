@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:warehouse_project/component/my_text_field.dart';
 import 'package:warehouse_project/controllers/user_contoller.dart';
+import 'package:warehouse_project/model/user_model.dart';
+import 'package:warehouse_project/services/save_secure_storage.dart';
 import 'package:warehouse_project/utility/my_text_style.dart';
 
 import '../utility/colors.dart';
@@ -20,6 +22,10 @@ class _UserPageState extends State<UserPage> {
     return GetBuilder<UserController>(
       init: UserController(),
       builder: (controller){
+        UserModel? user = controller.user;
+        if (user == null) {
+          return const SizedBox.shrink(); // or any other loading indicator
+        }
         return  Container(
           padding: const EdgeInsets.all(defaultPadding),
           decoration: const BoxDecoration(
@@ -27,6 +33,7 @@ class _UserPageState extends State<UserPage> {
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
           child:  Column(
+
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
@@ -44,7 +51,7 @@ class _UserPageState extends State<UserPage> {
                   const SizedBox(height: defaultPadding),
 
                   Center(
-                    child: Container(
+                    child: SizedBox(
                         height: 150,
                         width: 150,
                         child: Image.asset("assets/images/user.jpg",)),
@@ -58,165 +65,46 @@ class _UserPageState extends State<UserPage> {
                         hintStyle: TextStyle(color: Colors.grey)
                     ),
                   ):
-                  Text("First nmae   Last name",style: MyTextStyle.textW600White20,),
+                  Text( "${user.name}  ${user.surname} ",style: MyTextStyle.textW600White20,),
+
                   const SizedBox(height: 20,),
-
-                  controller.hidden == false ? GestureDetector(
-                    onTap: (){
-                      controller.editUserInfo();
-                    },
-                    child: Container(
-                      height: 25,
-                      width: 90,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          gradient: const LinearGradient(
-                              begin: Alignment.bottomLeft,
-                              end: Alignment.topRight,
-                              colors: [
-                                Color(0xFF24c6dc),
-                                Color(0xFF514a9d),
-                                // primaryColor.withOpacity(0.),
-                              ])
-                      ),
-                      child: const Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("Edit",style: TextStyle(color: Colors.white,fontSize: 16),),
-                              SizedBox(width: 10,),
-                              Icon(Icons.edit,color: Colors.white,size: 16,)
-                            ],
-                          )
-                      ),
-                    ),
-                  ): const SizedBox.shrink(),
-
-                  const SizedBox(height: 10,),
 
                   const Divider(color: Colors.white,),
+
                   const SizedBox(height: 10,),
 
-                  controller.hidden ?  TextField(
-                    controller: controller.cityController,
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Email",
-                        hintStyle: TextStyle(color: Colors.grey)
-                    ),
-                  ):
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Email:",style: TextStyle(color: Colors.grey,fontSize: 20.sp),),
+                      Text("Email:",style: TextStyle(color: Colors.grey,fontSize: 16.spMax),),
                       const SizedBox(width: 10,),
-                      Expanded(child: Text("nmadazimov734@gmail.com  ",style: MyTextStyle.textW600White20,maxLines: 1, overflow: TextOverflow.ellipsis,)),
+                      Expanded(child: Text(user.email!,style: MyTextStyle.textWhite16,maxLines: 1, overflow: TextOverflow.ellipsis,)),
                     ],
                   ),
-
 
                   const SizedBox(height: 20,),
-                  controller.hidden ?  TextField(
-                    controller: controller.cityController,
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "City",
-                        hintStyle: TextStyle(color: Colors.grey)
-                    ),
-                  ):
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("City:",style: TextStyle(color: Colors.grey,fontSize: 20.sp),),
+                      Text("City:",style: TextStyle(color: Colors.grey,fontSize:  16.spMax),),
                       const SizedBox(width: 10,),
-                      Text("Tashkent",style: MyTextStyle.textW600White20,),
+                      Text("Tashkent",style: MyTextStyle.textWhite16,),
                     ],
                   ),
-
 
                   const SizedBox(height: 20,),
-                  controller.hidden ?  TextField(
-                    controller: controller.cityController,
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Phone",
-                        hintStyle: TextStyle(color: Colors.grey)
-                    ),
-                  ):
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Phone:",style: TextStyle(color: Colors.grey,fontSize: 20.sp),),
+                      Text("Phone:",style: TextStyle(color: Colors.grey,fontSize:  16.spMax),),
                       const SizedBox(width: 10,),
-                      Expanded(child: Text("+998(99) 409-19-38",style: MyTextStyle.textW600White20,maxLines: 1, overflow: TextOverflow.ellipsis,)),
+                      Expanded(child: Text("+998(99) 409-19-38",style: MyTextStyle.textWhite16,maxLines: 1, overflow: TextOverflow.ellipsis,)),
                     ],
                   ),
-
-
-
-                  //  const SizedBox(height: 20,),
-                  // hidden ?  TextField(
-                  //   controller: cityController,
-                  //   decoration: InputDecoration(
-                  //       border: InputBorder.none,
-                  //       hintText: "City",
-                  //     hintStyle: TextStyle(color: Colors.white)
-                  //   ),
-                  // ):
-                  //  Row(
-                  //    mainAxisAlignment: MainAxisAlignment.start,
-                  //    children: [
-                  //      Text("Email:",style: TextStyle(color: Colors.grey,fontSize: 20.sp),),
-                  //      const SizedBox(width: 10,),
-                  //      Expanded(child: Text("nmadazimov734@gmail.com  ",style: MyTextStyle.textW600White20,maxLines: 1, overflow: TextOverflow.ellipsis,)),
-                  //    ],
-                  //  ),
-
-                  controller.hidden? GestureDetector(
-                    onTap: (){
-                      controller.saveUserInfo();
-                    },
-                    child: Container(
-                      height: 25,
-                      width: 90,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Color(0xFF24c6dc),
-                      ),
-                      child: const Center(
-                          child: Text("Save",style: TextStyle(color: Colors.white,fontSize: 18),)
-                      ),
-                    ),
-                  ): const SizedBox.shrink(),
-
                 ],
               )
-
-              // Chart(),
-              // StorageInfoCard(
-              //   svgSrc: "assets/icons/Documents.svg",
-              //   title: "Documents Files",
-              //   amountOfFiles: "1.3GB",
-              //   numOfFiles: 1328,
-              // ),
-              // StorageInfoCard(
-              //   svgSrc: "assets/icons/media.svg",
-              //   title: "Media Files",
-              //   amountOfFiles: "15.3GB",
-              //   numOfFiles: 1328,
-              // ),
-              // StorageInfoCard(
-              //   svgSrc: "assets/icons/folder.svg",
-              //   title: "Other Files",
-              //   amountOfFiles: "1.3GB",
-              //   numOfFiles: 1328,
-              // ),
-              // StorageInfoCard(
-              //   svgSrc: "assets/icons/folder.svg",
-              //   title: "Unknown",
-              //   amountOfFiles: "1.3GB",
-              //   numOfFiles: 140,
-              // ),
             ],
           ),
         );

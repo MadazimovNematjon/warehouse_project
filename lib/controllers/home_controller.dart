@@ -18,20 +18,17 @@ class HomeController extends GetxController{
     if (pro != null) {
 
       final productList = List<Content>.from(pro.content!.map((json) => Content.fromJson(json.toJson())));
-      // this.productList = productList;
-
       items = productList;
-      // for (var product in productList) {
-      //   items.add(product);
-      // }
       LogService.i(items.toString());
-      return items;
-    }
+
+    }else{
     return [];
+    }
   }catch(e){
       LogService.w(e.toString());
   }
   update();
+  return items;
   }
 
 

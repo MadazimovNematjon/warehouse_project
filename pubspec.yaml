@@ -35,8 +35,8 @@ dependencies:
   window_manager: ^0.3.5
   multi_dropdown: ^2.0.1
   searchfield: ^0.8.3
-  desktop_notifications: ^0.6.3
-  awesome_notifications_fcm: ^0.7.4+1
+  rxdart: ^0.27.1
+  simple_email_sender: ^0.0.5
 
 dev_dependencies:
   flutter_test:

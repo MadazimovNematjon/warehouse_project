@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:warehouse_project/controllers/alter_dialog_controller.dart';
 import 'package:warehouse_project/controllers/create_controller.dart';
 import 'package:warehouse_project/controllers/home_controller.dart';
 import 'package:warehouse_project/controllers/my_textfieal_controller.dart';
@@ -24,5 +25,6 @@ class DIService {
     Get.lazyPut<SignUpController>(() => SignUpController(), fenix: true);
     Get.lazyPut<ProductSearchController>(() => ProductSearchController(), fenix: true);
     Get.lazyPut<TransactionController>(() => TransactionController(), fenix: true);
+    Get.lazyPut<AlterDialogController>(() => AlterDialogController(), fenix: true);
   }
 }

@@ -24,6 +24,9 @@ class NetworkService {
   static const String API_CREATEPRO = "/product/create";
   static const String API_GETLISTPRO = "/product/getListProduct";
   static const String API_PROFILE_LIST =  "/profile/list";
+  static const String API_TRANSACTION =  "/transaction/orderTransaction";
+  static const String API_NOTIFYTRANSACTION =  "/transaction/getNotifyTransaction";
+
 
 
   /*Pagebal product*/
@@ -75,10 +78,10 @@ class NetworkService {
       }
     } on DioError catch (e) {
       if (e.response != null) {
-       LogService.d('POST Error: ${e.response!.statusCode} - ${e.response!.data}');
+       LogService.e('POST Error: ${e.response!.statusCode} - ${e.response!.data}');
         return e.response!.data.toString();
       } else {
-        LogService.w('POST Error: ${e.error}');
+        LogService.e('POST Error: ${e.error}');
       }
     }
 
@@ -95,7 +98,7 @@ class NetworkService {
     return params;
   }
 
-  static Map<String, String> paramsSing(UserModel user) {
+  static Map<String, String> paramsAuth(UserModel user) {
     final params = <String, String>{
       "email": user.email ?? "",
       "password": user.password ?? "",
@@ -146,14 +149,20 @@ class NetworkService {
 }
 
   static Map<String,dynamic> paramsTransaction(TransactionModel transaction){
+
+    LogService.w("paramsTransaction ${transaction.reciverEmail}  ${transaction.productId}  ${transaction.senderEmail}  ${transaction.quantityOfProduct}");
+
     Map<String,dynamic> params = {
-      "product_id": transaction.productId,
-      "quantityOfProduct": transaction.quantityOfProduct,
-      "sender_email": transaction.senderEmail,
-      "reciver_email": transaction.reciverEmail,
+      "product_id": transaction.productId ?? "",
+      "quantityOfProduct": transaction.quantityOfProduct ?? "",
+      "sender_email": transaction.senderEmail ?? "",
+      "reciver_email": transaction.reciverEmail ?? "",
     };
+
+    LogService.d(" params ${params.toString()}");
     return params;
   }
+
 
   static Map<String, String> paramsImage(ImageModel image) {
     final params = <String, String>{
@@ -161,6 +170,7 @@ class NetworkService {
     };
     return params;
   }
+
 
   // static Map<String,dynamic>? paramProfileList(ProfileListModel profile){
   //   Map<String,String> params = {
@@ -179,6 +189,7 @@ class NetworkService {
   //   LogService.i(data.toString());
   //   return data;
   // }
+
 
   static List<ProfileListModel> parseProfileList(String response) {
     List<ProfileListModel> data = [];

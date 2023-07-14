@@ -1,6 +1,8 @@
 
 import 'dart:io';
 import 'package:warehouse_project/pages/sign_in.dart';
+import 'package:warehouse_project/pages/sign_up.dart';
+import 'package:warehouse_project/responsive/size_config.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
@@ -15,30 +17,30 @@ import 'services/di_service.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DIService.init();
-  await windowManager.ensureInitialized();
-
-  WindowOptions windowOptions = const WindowOptions(
-    minimumSize: Size(600.0, 800.0),
-    // center: f,
-    backgroundColor: Colors.transparent,
-    skipTaskbar: false,
-    titleBarStyle: TitleBarStyle.normal,
-    windowButtonVisibility: true,
-  );
-
-  windowManager.waitUntilReadyToShow(windowOptions, () async {
-    await windowManager.show();
-    await windowManager.focus();
-  });
+  // await windowManager.ensureInitialized();
+  //
+  // WindowOptions windowOptions = const WindowOptions(
+  //   minimumSize: Size(600.0, 800.0),
+  //   // center: f,
+  //   backgroundColor: Colors.transparent,
+  //   skipTaskbar: false,
+  //   titleBarStyle: TitleBarStyle.normal,
+  //   windowButtonVisibility: true,
+  // );
+  //
+  // windowManager.waitUntilReadyToShow(windowOptions, () async {
+  //   await windowManager.show();
+  //   await windowManager.focus();
+  // });
   runApp(const MyApp());
 
-  doWhenWindowReady(() {
-    const initialSize = Size(408.0, 681.0);
-    appWindow.minSize = initialSize;
-    appWindow.size = const Size(900.0, 800.0);
-    appWindow.alignment = Alignment.center;
-    appWindow.show();
-  });
+  // doWhenWindowReady(() {
+  //   const initialSize = Size(408.0, 681.0);
+  //   appWindow.minSize = initialSize;
+  //   appWindow.size = const Size(900.0,800.0);
+  //   appWindow.alignment = Alignment.center;
+  //   appWindow.show();
+  // });
 
 }
 
@@ -67,7 +69,7 @@ class MyApp extends StatelessWidget {
             ),
             scaffoldBackgroundColor: bgColor,
           ),
-          home: MainScreen(),
+          home: const MainScreen (),
           // routes: {
           //   SignUp.id: (_) => SignUp(),
           //   SignIn.id: (_) => SignIn(),
