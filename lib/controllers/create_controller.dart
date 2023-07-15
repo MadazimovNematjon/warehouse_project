@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:warehouse_project/responsive/size_config.dart';
 import 'package:warehouse_project/services/log_service.dart';
 import '../model/product_model.dart';
 import '../model/user_model.dart';

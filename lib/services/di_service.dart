@@ -3,6 +3,8 @@ import 'package:warehouse_project/controllers/alter_dialog_controller.dart';
 import 'package:warehouse_project/controllers/create_controller.dart';
 import 'package:warehouse_project/controllers/home_controller.dart';
 import 'package:warehouse_project/controllers/my_textfieal_controller.dart';
+import 'package:warehouse_project/controllers/notification_controller.dart';
+import 'package:warehouse_project/controllers/product-ownership.dart';
 import 'package:warehouse_project/controllers/product_search_controller.dart';
 import 'package:warehouse_project/controllers/responsive_controller.dart';
 import 'package:warehouse_project/controllers/sign_in_controller.dart';
@@ -26,5 +28,7 @@ class DIService {
     Get.lazyPut<ProductSearchController>(() => ProductSearchController(), fenix: true);
     Get.lazyPut<TransactionController>(() => TransactionController(), fenix: true);
     Get.lazyPut<AlterDialogController>(() => AlterDialogController(), fenix: true);
+    Get.lazyPut<NotificationController>(() => NotificationController(), fenix: true);
+    Get.lazyPut<ProductOwnershipController>(() => ProductOwnershipController(), fenix: true);
   }
 }

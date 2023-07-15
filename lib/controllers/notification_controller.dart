@@ -44,4 +44,15 @@ class NotificationController extends GetxController {
 
     update();
   }
+
+  void removeProduct(NotificationProduct product) {
+    items.remove(product);
+
+    // Print a debug message
+    print("Removed product with id: ${product.id}");
+
+    // Update the UI with the new list of products
+    update();
+  }
+
 }

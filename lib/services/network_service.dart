@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
+import 'package:warehouse_project/model/acceptance_model.dart';
 import 'package:warehouse_project/model/transaction_model.dart';
 import 'package:warehouse_project/model/user_profile_list_model.dart';
 import 'package:warehouse_project/services/log_service.dart';
@@ -26,6 +27,8 @@ class NetworkService {
   static const String API_PROFILE_LIST =  "/profile/list";
   static const String API_TRANSACTION =  "/transaction/orderTransaction";
   static const String API_NOTIFYTRANSACTION =  "/transaction/getNotifyTransaction";
+  static const String API_ACCEPTANCE =  "/transaction/acceptance";
+  static const String API_OWNERSHIP =  "/product_ownership/get_products";
 
 
 
@@ -171,6 +174,13 @@ class NetworkService {
     return params;
   }
 
+  static Map<String, dynamic> paramAcceptance(AcceptanceModel acceptance) {
+    final params = {
+      "transaction_id": acceptance.transaction_id,
+      "acceptanceOrRejection":acceptance.acceptanceOrRejection
+    };
+    return params;
+  }
 
   // static Map<String,dynamic>? paramProfileList(ProfileListModel profile){
   //   Map<String,String> params = {

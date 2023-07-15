@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:warehouse_project/controllers/product-ownership.dart';
 import 'package:warehouse_project/services/log_service.dart';
 
 import '../model/user_model.dart';
@@ -29,7 +31,7 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
 
           Container(
-            margin: const EdgeInsets.only(left: 20,right: 20),
+            margin: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
               children: [
                 Container(
@@ -38,20 +40,25 @@ class _MyDrawerState extends State<MyDrawer> {
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                          image: Image.asset("assets/images/logo.png").image)),
+                          image: Image
+                              .asset("assets/images/logo.png")
+                              .image)),
                 )
               ],
             ),
           ),
 
           Container(
-            margin: const EdgeInsets.only(top: 20,left: 20,right: 20),
+            margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
             child: const Center(
                 child: Text(
-              "Innovatsion Texnologiyalari Markazi",textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-            )),
+                  "Innovatsion Texnologiyalari Markazi",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                )),
           ),
 
           MyButtonDrawer(
@@ -62,16 +69,18 @@ class _MyDrawerState extends State<MyDrawer> {
             title: "Profile",
             icon: Icons.person,
           ),
-          // const MyButtonDrawer(
-          //   // onTap: SizedBox.shrink,
-          //   title: "Message",
-          //   icon: Icons.send,
-          // ),
-          // const MyButtonDrawer(
-          //   // onTap: SizedBox.shrink,
-          //   title: "Settings",
-          //   icon: Icons.settings,
-          // ),
+
+          GetBuilder<ProductOwnershipController>(
+            init: ProductOwnershipController(),
+              builder: (controller) {
+            return MyButtonDrawer(
+              onTap: () async {
+              controller.fetchContentData();
+              },
+              title: "Profile",
+              icon: Icons.person,
+            );
+          }),
         ],
       ),
     );

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class ProductModel {
   final List<Content>? content;
   final Pageable? pageable;
@@ -54,6 +56,11 @@ class ProductModel {
   };
 }
 
+
+
+List<Content> contentFromJson(String str) => List<Content>.from(json.decode(str).map((x) => Content.fromJson(x)));
+
+String contentToJson(List<Content> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 
 class Content {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:warehouse_project/controllers/home_controller.dart';
+import 'package:warehouse_project/controllers/product-ownership.dart';
 import 'package:warehouse_project/controllers/responsive_controller.dart';
 import 'package:warehouse_project/controllers/user_contoller.dart';
 import 'package:warehouse_project/pages/user_page.dart';
@@ -39,6 +40,7 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
     // getData();
     Get.find<HomeController>().fetchData();
+    Get.find<ProductOwnershipController>().fetchContentData();
 
   }
 

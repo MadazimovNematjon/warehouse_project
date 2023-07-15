@@ -31,22 +31,28 @@ class MyGridView extends StatelessWidget {
               childAspectRatio: controller.childAspectRatio,
             ),
             children: [
-              GetBuilder<NotificationController>(
-                  init: NotificationController(),
-                  builder: (controller) {
-                    return gridviewButton(
-                      title: "title1",
-                      image: "assets/images/create.png",
-                      onPressed: () {
-                        controller.sendEmail();
-                        final alter = Get.find<AlterDialogController>();
 
-                          LogService.i("${controller.items.length}");
-                          // NotificationProduct item = controller.items;
-                          // alter.showItemNotificationAlterDialog(context, item);
-                      },
-                    );
-                  }),
+
+              GetBuilder<NotificationController>(
+                init: NotificationController(),
+                builder: (notificationController) {
+                  return gridviewButton(
+                    title: "title1",
+                    image: "assets/images/create.png",
+                    onPressed: () async {
+                      await notificationController.sendEmail();
+                      final alter = Get.find<AlterDialogController>();
+                      alter.showItemNotificationAlterDialog(
+                        context,
+                        notificationController.items,
+                      );
+                      // Handle case when there are no notification items
+
+                    },
+                  );
+                }),
+
+
 
               GetBuilder<AlterDialogController>(
                 init: AlterDialogController(),

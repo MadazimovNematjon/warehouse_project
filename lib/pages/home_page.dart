@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:warehouse_project/component/product_ownership_container.dart';
 import 'package:warehouse_project/controllers/grid_view_controller.dart';
 import 'package:warehouse_project/controllers/responsive_controller.dart';
 import 'package:warehouse_project/model/product_model.dart';
@@ -23,14 +24,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   // Get.find<HomeController>().fetchData();
-  //   LogService.i("${Get.find<HomeController>().fetchData()}");
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -98,6 +91,10 @@ class _HomePageState extends State<HomePage> {
                                   height: defaultPadding,
                                 ),
                                 ProductList(),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                ProductOwnership(),
                                 if (controller.isMobile)
                                   const SizedBox(height: defaultPadding),
 
