@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 import 'package:warehouse_project/controllers/home_controller.dart';
 import 'package:warehouse_project/controllers/product-ownership.dart';
 import 'package:warehouse_project/controllers/responsive_controller.dart';
+import 'package:warehouse_project/controllers/transaction_historiy_controller.dart';
 import 'package:warehouse_project/controllers/user_contoller.dart';
 import 'package:warehouse_project/pages/user_page.dart';
 import '../component/my_draw.dart';
+import '../controllers/network_controller.dart';
 import '../responsive/responsive.dart';
 import '../utility/colors.dart';
 import '../utility/my_text_style.dart';
@@ -41,6 +43,8 @@ class _MainScreenState extends State<MainScreen> {
     // getData();
     Get.find<HomeController>().fetchData();
     Get.find<ProductOwnershipController>().fetchContentData();
+    Get.find<TransactionHistoryController>().fetchContentData();
+    Get.find<NetworkController>().onInit();
 
   }
 
@@ -55,7 +59,7 @@ class _MainScreenState extends State<MainScreen> {
           appBar: controller.isMobile || controller.isTablet
               ? AppBar(
             title: Text(
-              "Home Page",
+              "home page".tr,
               style: MyTextStyle.textW600White20,
             ),
             elevation: 0,
@@ -76,15 +80,15 @@ class _MainScreenState extends State<MainScreen> {
                     BorderRadius.circular(defaultPadding / 1.5),
                     color: secondaryColor,
                   ),
-                  child: const Center(
+                  child:  Center(
                     child: TextField(
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.all(10),
-                        hintText: "Search",
-                        hintStyle: TextStyle(color: Colors.grey),
+                        contentPadding: const EdgeInsets.all(10),
+                        hintText: "search".tr,
+                        hintStyle: const TextStyle(color: Colors.grey),
                         border: InputBorder.none,
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.search,
                           color: Colors.grey,
                         ),

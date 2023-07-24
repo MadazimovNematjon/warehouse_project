@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:warehouse_project/pages/sign_in.dart';
 import 'package:warehouse_project/pages/sign_up.dart';
 import 'package:warehouse_project/responsive/size_config.dart';
+import 'package:warehouse_project/services/language_service.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +58,9 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'First Method',
+          translations: LanguageService(),
+          locale: Locale('ru','RU'),
+          fallbackLocale: Locale('ru','RU'),
           theme: ThemeData(
             drawerTheme: const DrawerThemeData(
               shadowColor: Colors.white54,
@@ -69,7 +72,7 @@ class MyApp extends StatelessWidget {
             ),
             scaffoldBackgroundColor: bgColor,
           ),
-          home: const MainScreen (),
+          home: const MainScreen(),
           // routes: {
           //   SignUp.id: (_) => SignUp(),
           //   SignIn.id: (_) => SignIn(),

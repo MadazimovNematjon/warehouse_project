@@ -27,24 +27,24 @@ class SignUpController extends GetxController{
     if(firstName.isEmpty || lastName.isEmpty || gmail.isEmpty || password.isEmpty) return ;
     if(password != aPassword) return;
 
-    var user = UserModel(name: firstName,surname: lastName,email: gmail,password: password,createdDate: UtilsService.currantDate().toString());
+    var user = UserModel(name: firstName,surname: lastName,email: gmail,password: password,);
 
-    await NetworkService.POST(NetworkService.API_SIGNUP, NetworkService.paramsCreate(user)).then((dynamic data) {
-      if (data is String) {
-        // Handle the response as a plain string
-        dataSave(data);
-      } else {
-        // Handle the case when the data is not in the expected format
-        LogService.w("Error: Data is not a String");
-      }
-    });
+    // await NetworkService.POST(NetworkService.API_SIGNUP, NetworkService.paramsCreate(user)).then((dynamic data) {
+    //   if (data is String) {
+    //     // Handle the response as a plain string
+    //     dataSave(data);
+    //   } else {
+    //     // Handle the case when the data is not in the expected format
+    //     LogService.w("Error: Data is not a String");
+    //   }
+    // });
 
   }
 
   dataSave(String data){
     SecureStorage.saveData({'response': data});// Storing the string in a map with a key 'response'
 
-      // Get.off(const MainScreen());
+      Get.off(const MainScreen());
       update();
 
   }

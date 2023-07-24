@@ -32,7 +32,7 @@ class _HoverButtonState extends State<HoverButton> {
         margin: const EdgeInsets.all(10),
         width: 100,
         height: 40,
-        color: _isHovering ?   widget.title  == "Radetish" ?  Colors.red : (widget.color ?? Colors.grey) : secondaryColor,
+        color: _isHovering ?   widget.title  == "refusal" ?  Colors.red : (widget.color ?? Colors.grey) : secondaryColor,
         // Use the specified color, or default to Colors.grey
         child: Center(
           child: Text(

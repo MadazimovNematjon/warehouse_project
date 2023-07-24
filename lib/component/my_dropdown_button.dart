@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:warehouse_project/controllers/create_controller.dart';
 import '../utility/colors.dart';
 
@@ -20,18 +21,18 @@ Widget MyDropdownButton(CreateController controller,String quantityType) {
         controller.updateValue(newValue);
       }
     },
-    items: const <DropdownMenuItem<String>>[
+    items:  <DropdownMenuItem<String>>[
       DropdownMenuItem<String>(
         value: 'kg',
-        child: Text('kg'),
+        child: Text('kg'.tr),
       ),
       DropdownMenuItem<String>(
-        value: 'dona',
-        child: Text('dona'),
+        value: 'piece',
+        child: Text('piece'.tr),
       ),
       DropdownMenuItem<String>(
-        value: 'litr',
-        child: Text('litr'),
+        value: 'liter',
+        child: Text('liter'.tr),
       ),
     ],
   );

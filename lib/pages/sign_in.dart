@@ -36,11 +36,11 @@ class _SignInState extends State<SignIn> {
                           MyTextField(
                               controller: controller.gmailController,
                               icon: Icons.email_outlined,
-                              hintText: "Gmail"),
+                              hintText: "email:".tr),
                           MyTextField(
                               controller: controller.passwordController,
                               icon: Bootstrap.key,
-                              hintText: "Password",
+                              hintText: "password".tr,
                               passwordIcon: true),
                           const SizedBox(
                             height: 20,
@@ -50,18 +50,18 @@ class _SignInState extends State<SignIn> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              const Text(
-                                "Don't have an account?",
-                                style:
-                                TextStyle(fontSize: 16, color: Colors.grey),
-                              ),
+                              //  Text(
+                              //    'don\'t have an accaunt ?'.tr,
+                              //   style:
+                              //   const TextStyle(fontSize: 16, color: Colors.grey),
+                              // ),
                               TextButton(
                                 onPressed: () {
                                   Get.off(const SignUp());
                                 },
-                                child: const Text(
-                                  "Sign Up",
-                                  style: TextStyle(
+                                child:  Text(
+                                  "sign up".tr,
+                                  style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w700,
                                       color: primaryColor),
@@ -90,10 +90,10 @@ class _SignInState extends State<SignIn> {
                                         Color(0xFF24c6dc),
                                         Color(0xFF514a9d),
                                       ])),
-                              child: const Center(
+                              child:  Center(
                                 child: Text(
-                                  "Sign In",
-                                  style: TextStyle(
+                                  "sign in".tr,
+                                  style: const TextStyle(
                                     fontSize: 18,
                                     color: Colors.white,
                                     fontWeight: FontWeight.w900,

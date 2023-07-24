@@ -38,7 +38,7 @@ class ProductSearchField extends StatelessWidget {
           searchInputDecoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: Colors.black26)),
-            hintText: " Mahsulotni izlash",
+            hintText: "product search".tr,
             hintStyle: MyTextStyle.textWhite16,
             focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(

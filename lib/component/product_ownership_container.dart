@@ -25,7 +25,7 @@ class ProductOwnership extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Menda mavjud",
+            "i have it".tr,
             style: MyTextStyle.textW600White20,
           ),
           SizedBox(
@@ -38,21 +38,21 @@ class ProductOwnership extends StatelessWidget {
               Expanded(
                 flex: 3,
                 child: Text(
-                  "Maxsulot nomi",
+                  "product name".tr,
                   style: MyTextStyle.text20,
                 ),
               ),
               Expanded(
                 flex: 2,
                 child: Text(
-                  "Miqdori",
+                  "quantity".tr,
                   style: MyTextStyle.text20,
                 ),
               ),
               Expanded(
                 flex: 1,
                 child: Text(
-                  "Sana",
+                  "the date".tr,
                   style: MyTextStyle.text20,
                 ),
               ),
@@ -65,7 +65,7 @@ class ProductOwnership extends StatelessWidget {
             init: ProductOwnershipController(),
             builder: (controller) {
               return ListView.builder(
-                scrollDirection: Axis.vertical,
+                // scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemCount: controller.items.length,
                 itemBuilder: (context, index) {
@@ -83,11 +83,11 @@ class ProductOwnership extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: () {},
-                child: Text("Previous", style: MyTextStyle.text20),
+                child: Text("previous".tr, style: MyTextStyle.text20),
               ),
               TextButton(
                 onPressed: () {},
-                child: Text("Next", style: MyTextStyle.text20),
+                child: Text("next".tr, style: MyTextStyle.text20),
               ),
             ],
           ),

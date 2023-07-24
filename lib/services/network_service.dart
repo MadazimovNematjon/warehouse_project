@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
+import 'package:warehouse_project/controllers/product_controller.dart';
 import 'package:warehouse_project/model/acceptance_model.dart';
 import 'package:warehouse_project/model/transaction_model.dart';
 import 'package:warehouse_project/model/user_profile_list_model.dart';
@@ -13,7 +14,7 @@ import '../model/user_model.dart';
 class NetworkService {
   static final dio = Dio();
   static int currentPage = 0;
-  static const String BASE = "192.168.20.49:8080";
+  static const String BASE = "192.168.100.49:8080";
 
   static Map<String, String> headers = {
     'Content-Type': 'application/json; charset=UTF-8'
@@ -29,12 +30,13 @@ class NetworkService {
   static const String API_NOTIFYTRANSACTION =  "/transaction/getNotifyTransaction";
   static const String API_ACCEPTANCE =  "/transaction/acceptance";
   static const String API_OWNERSHIP =  "/product_ownership/get_products";
+  static const String API_TRANS_HISTORY =  "/transaction/transactionHistory";
 
 
 
   /*Pagebal product*/
   static Future<ProductModel?> fetchProductModel() async {
-  final response = await http.get(Uri.parse('http://192.168.20.49:8080/product/getListProduct?page=0&size=10'));
+  final response = await http.get(Uri.parse('http://192.168.100.49:8080/product/getListProduct?page=${ProductController.page.toString()}&size=2'));
 
   try{
     if (response.statusCode == 200) {
@@ -91,17 +93,17 @@ class NetworkService {
     return null;
   }
 
-  static Map<String, String> paramsCreate(UserModel user) {
-    final params = <String, String>{
-      "name": user.name ?? "",
-      "surname": user.surname ?? "",
-      "email": user.email ?? "",
-      "password": user.password ?? "",
-    };
-    return params;
-  }
+  // static Map<String, String> paramsCreate(UserModel user) {
+  //   final params = <String, String>{
+  //     "name": user.name ?? "",
+  //     "surname": user.surname ?? "",
+  //     "email": user.email ?? "",
+  //     "password": user.password ?? "",
+  //   };
+  //   return params;
+  // }
 
-  static Map<String, String> paramsAuth(UserModel user) {
+  static Map<String, String> paramsSignIn(UserModel user) {
     final params = <String, String>{
       "email": user.email ?? "",
       "password": user.password ?? "",
@@ -182,25 +184,6 @@ class NetworkService {
     return params;
   }
 
-  // static Map<String,dynamic>? paramProfileList(ProfileListModel profile){
-  //   Map<String,String> params = {
-  //     "id": profile.id.toString() ?? "",
-  //     "name": profile.name ?? "",
-  //     "surname": profile.surname ?? "",
-  //     "email": profile.email ?? "",
-  //     "role": profile.role ?? "",
-  //   };
-  //   return params;
-  // }
-  // static List<ProfileListModel> parseProfileList(String response) {
-  //   dynamic json = jsonDecode(response);
-  //   var data = List<ProfileListModel>.from(
-  //       json.map((x) => ProfileListModel.fromJson(x)));
-  //   LogService.i(data.toString());
-  //   return data;
-  // }
-
-
   static List<ProfileListModel> parseProfileList(String response) {
     List<ProfileListModel> data = [];
     try {
@@ -216,6 +199,8 @@ class NetworkService {
     }
     return data;
   }
+
+
 
 
 }

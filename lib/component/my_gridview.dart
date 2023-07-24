@@ -37,8 +37,8 @@ class MyGridView extends StatelessWidget {
                 init: NotificationController(),
                 builder: (notificationController) {
                   return gridviewButton(
-                    title: "title1",
-                    image: "assets/images/create.png",
+                    title: "transfers".tr,
+                    image: "assets/images/transfers.png",
                     onPressed: () async {
                       await notificationController.sendEmail();
                       final alter = Get.find<AlterDialogController>();
@@ -58,8 +58,8 @@ class MyGridView extends StatelessWidget {
                 init: AlterDialogController(),
                   builder: (controller) {
                 return gridviewButton(
-                  title: "title2",
-                  image: "assets/images/create.png",
+                  title: "chat".tr,
+                  image: "assets/images/chat.png",
                   onPressed: () {
 
                   },
@@ -69,7 +69,7 @@ class MyGridView extends StatelessWidget {
                   init: AlterDialogController(),
                   builder: (controller) {
                     return gridviewButton(
-                      title: "Create Product",
+                      title: "create product".tr,
                       image: "assets/images/create.png",
                       onPressed: () {
                         controller.showCreateContentDialog(context);
@@ -80,7 +80,7 @@ class MyGridView extends StatelessWidget {
                   init: AlterDialogController(),
                   builder: (controller) {
                     return gridviewButton(
-                      title: "Transaction",
+                      title: "transaction".tr,
                       image: "assets/images/transaction.png",
                       onPressed: () {
                         controller.showTransactionDialog(context);

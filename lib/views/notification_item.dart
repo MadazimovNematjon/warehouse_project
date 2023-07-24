@@ -13,8 +13,7 @@ import '../controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 
 
-Widget itemOfNotificationAlterDialog(NotificationProduct product,
-    BuildContext context) {
+Widget itemOfNotificationAlterDialog(NotificationProduct product,BuildContext context) {
   return GetBuilder<AlterDialogController>(
       init: AlterDialogController(),
       builder: (_controller) {
@@ -49,37 +48,94 @@ Widget itemOfNotificationAlterDialog(NotificationProduct product,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
 
-                                  Text(
-                                    "Maxsulot nomi: ${product.productName }" ??
-                                        "",
-                                    style: MyTextStyle.textWhite16,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "product name".tr,
+                                        style: MyTextStyle.text16,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+
+                                      SizedBox(width: 5,),
+
+                                      Text(
+                                        product.productName ??
+                                            "",
+                                        style: MyTextStyle.textWhite16,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ],
                                   ),
+
                                   const SizedBox(height: 5,),
-                                  Text(
-                                    "Maxsulot soni: ${product
-                                        .productQuantityType} ${product
-                                        .productQuantityType}" ?? "",
-                                    style: MyTextStyle.text16,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
+
+                                  Row(
+                                    children: [
+                                      Text( "product quantity".tr,
+                                        style: MyTextStyle.text16,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,),
+
+                                      SizedBox(width: 5,),
+
+                                      Text(
+                                        "${product
+                                            .productQuantityType} ${product
+                                            .productQuantityType}" ?? "",
+                                        style: MyTextStyle.text16,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ],
                                   ),
+
                                   const SizedBox(height: 5,),
-                                  Text(
-                                    "Yuboruvchi: ${product.senderEmail}" ?? "",
-                                    style: MyTextStyle.text16,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
+
+                                 Row(
+                                   children: [
+                                     Text(
+                                       "sender".tr,
+                                       style: MyTextStyle.text16,
+                                       maxLines: 2,
+                                       overflow: TextOverflow.ellipsis,
+                                     ),
+
+                                     SizedBox(width: 5,),
+
+                                     Text(
+                                       "${product.senderEmail}" ?? "",
+                                       style: MyTextStyle.text16,
+                                       maxLines: 2,
+                                       overflow: TextOverflow.ellipsis,
+                                     ),
+
+                                   ],
+                                 ),
+
                                   const SizedBox(height: 5,),
-                                  Text(
-                                    "Qabulq qiluvchi: ${product.resvierEmail}" ??
-                                        "",
-                                    style: MyTextStyle.text16,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
+
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "receiver".tr,
+                                        style: MyTextStyle.text16,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+
+                                      SizedBox(width: 5,),
+
+                                      Text(
+                                        "${product.resvierEmail}" ?? "",
+                                        style: MyTextStyle.text16,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+
+                                    ],
+                                  )
                                 ],
                               ),
                             ),
@@ -95,13 +151,13 @@ Widget itemOfNotificationAlterDialog(NotificationProduct product,
                     builder: (controller) {
                       return Row(
                         children: [
-                          HoverButton(title: "Radetish",
+                          HoverButton(title: "refusal".tr,
                               onPressed: () {
                                 controller.acceptanceUpload(false, product.id!);
                                 _controller.deleteProduct(product.id!);
                               },
                               color: secondaryColor),
-                          HoverButton(title: "Qabulqilish",
+                          HoverButton(title: "acceptance".tr,
                               onPressed: () {
                                 controller.acceptanceUpload(true, product.id!);
                                 _controller.deleteProduct(product.id!);
@@ -111,7 +167,9 @@ Widget itemOfNotificationAlterDialog(NotificationProduct product,
                         ],
                       );
                     }),
+
                 const Divider(),
+
               ],
             )
         );

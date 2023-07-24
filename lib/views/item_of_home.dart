@@ -67,7 +67,7 @@ Widget itemOfHome(HomeController controller, Content content,
                         width: 5,
                       ),
                       Text(
-                        content.product_quantity_type ?? '',
+                        content.product_quantity_type!.tr ?? '',
                         style: MyTextStyle.text16,
                       ),
                     ],

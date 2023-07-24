@@ -37,7 +37,7 @@ class UserSearchField extends StatelessWidget {
           searchInputDecoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: Colors.black26)),
-            hintText: "Foydalanuv chilarni izlash",
+            hintText: "user search".tr,
             hintStyle: MyTextStyle.textWhite16,
             focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(

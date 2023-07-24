@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:warehouse_project/controllers/notification_controller.dart';
+import 'package:warehouse_project/controllers/product-ownership.dart';
+import 'package:warehouse_project/controllers/transaction_historiy_controller.dart';
 import 'package:warehouse_project/services/log_service.dart';
 import '../model/product_model.dart';
 import '../model/user_model.dart';
@@ -89,14 +92,6 @@ class CreateController extends GetxController {
         product_quantity_type: quantityType,
         createDate: UtilsService.currantDate(),
       );
-
-      // print("id: ${user.id} email: ${user.email}");
-      // print("about: $about email: ${user.email}");
-      // print("price: $price email: ${user.email}");
-      // print("quantity: $quantity email: ${user.email}");
-      // print("quantityType: $quantityType email: ${user.email}");
-      // print("name: $name email: ${user.email}");
-
       _apiProduct(content);
     }
   }
@@ -118,17 +113,15 @@ class CreateController extends GetxController {
     aboutController.clear();
     priceController.clear();
     quantityController.clear();
-    initTimer();
+    updateData();
     Get.back();
     update();
    }
 
- void initTimer(){
-    Timer(Duration(seconds: 2), () {
+ void updateData(){
       Get.find<HomeController>().fetchData();
-      LogService.d("${Get.find<HomeController>().fetchData}");
-      Get.find<HomeController>().items;
+      Get.find<ProductOwnershipController>().fetchContentData();
+      Get.find<TransactionHistoryController>().fetchContentData();
       update();
-    });
    }
 }

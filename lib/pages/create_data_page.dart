@@ -48,7 +48,7 @@ class CreateData extends StatelessWidget {
                 ),
                 UploadTextField(
                     controller: controller.productNameController,
-                    hintText: "Maxsulot nomi"),
+                    hintText: "product name".tr),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -61,7 +61,7 @@ class CreateData extends StatelessWidget {
                               FilteringTextInputFormatter.digitsOnly,
                             ],
                             controller: controller.quantityController,
-                            hintText: "Maxsulot miqdori")),
+                            hintText: "product quantity".tr)),
                     Expanded(
                       flex: 1,
                       child: Container(
@@ -78,9 +78,9 @@ class CreateData extends StatelessWidget {
                 ),
                 UploadTextField(
                     controller: controller.aboutController,
-                    hintText: "Maxsulot haqida"),
+                    hintText: "about the product".tr),
                 UploadTextField(
-                    controller: controller.priceController, hintText: "Narxi"),
+                    controller: controller.priceController, hintText: "price".tr),
                 const SizedBox(
                   height: defaultPadding,
                 ),
@@ -88,22 +88,30 @@ class CreateData extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                        child: TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: Text(
-                              "cancel",
-                              style: MyTextStyle.textW600White20,
-                            ))),
+                        child: SizedBox(
+                          width: 100,
+                          height: 50,
+                          child: TextButton(
+                              onPressed: () {
+                                Get.back();
+                              },
+                              child: Text(
+                                "close".tr,
+                                style: MyTextStyle.textW600White20,
+                              )),
+                        )),
                     Expanded(
-                      child: TextButton(
-                        onPressed: () {
-                          controller.createNewContent();
-                        },
-                        child: Text(
-                          "send",
-                          style: MyTextStyle.textW600White20,
+                      child: SizedBox(
+                        width: 100,
+                        height: 50,
+                        child: TextButton(
+                          onPressed: () {
+                            controller.createNewContent();
+                          },
+                          child: Text(
+                            "send".tr,
+                            style: MyTextStyle.textW600White20,
+                          ),
                         ),
                       ),
                     ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:warehouse_project/component/product_ownership_container.dart';
+import 'package:warehouse_project/component/transaction_history_container.dart';
 import 'package:warehouse_project/controllers/grid_view_controller.dart';
 import 'package:warehouse_project/controllers/responsive_controller.dart';
 import 'package:warehouse_project/model/product_model.dart';
@@ -95,6 +96,10 @@ class _HomePageState extends State<HomePage> {
                                   height: 20,
                                 ),
                                 ProductOwnership(),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                TransactionHistory(),
                                 if (controller.isMobile)
                                   const SizedBox(height: defaultPadding),
 

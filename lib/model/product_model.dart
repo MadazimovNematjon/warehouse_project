@@ -1,4 +1,12 @@
+// To parse this JSON data, do
+//
+//     final productModel = productModelFromJson(jsonString);
+
 import 'dart:convert';
+
+ProductModel productModelFromJson(String str) => ProductModel.fromJson(json.decode(str));
+
+String productModelToJson(ProductModel data) => json.encode(data.toJson());
 
 class ProductModel {
   final List<Content>? content;
@@ -65,7 +73,7 @@ String contentToJson(List<Content> data) => json.encode(List<dynamic>.from(data.
 
 class Content {
   int? id;
-  String? ownerProfileId;
+  int? ownerProfileId;
   String? productName;
   String? createDate;
   String? productAbout; // Update the type to dynamic
@@ -96,7 +104,7 @@ class Content {
       productAbout: json["productAbout"],
       product_quantity_type: json["product_quantity_type"].toString(),
       email: json["email"].toString(),
-      ownerProfileId: json["ownerProfileId"].toString(),
+      ownerProfileId: json["ownerProfileId"],
       image_url: json["image_url"].toString(),
       quantity: json["quantity"].toString(),
       price: json["price"].toString(),

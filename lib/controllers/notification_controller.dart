@@ -16,7 +16,7 @@ class NotificationController extends GetxController {
     UserModel? user = await SecureStorage.getData();
 
     final queryParams = {
-      'reciverEmail': "nmadazimov734@gmail.com",
+      'reciverEmail': user!.email,
       // Add more query parameters as needed
     };
 

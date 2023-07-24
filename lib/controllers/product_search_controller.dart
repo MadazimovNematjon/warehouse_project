@@ -17,7 +17,7 @@ class ProductSearchController extends GetxController {
   Future searchProducts(String searchTerm) async {
     try {
       final searchUrl =
-          'http://192.168.20.49:8080/product/searchProductByName/%7Bname%7D?name=$searchTerm';
+          'http://192.168.100.49:8080/product/searchProductByName/%7Bname%7D?name=$searchTerm';
 
       final response = await http.get(Uri.parse(searchUrl));
       if (response.statusCode == 200) {

@@ -1,6 +1,6 @@
 class TransactionModel {
   final int? productId;
-  final int? quantityOfProduct;
+  final String? quantityOfProduct;
   final String? senderEmail;
   final String? reciverEmail;
 

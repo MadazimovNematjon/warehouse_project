@@ -10,7 +10,7 @@ class FileService{
 
  static Future sendImageToBackup(File imageFile) async {
 
-   var uri = Uri.parse("http://192.168.20.49:8080/attach/upload");
+   var uri = Uri.parse("http://192.168.100.49:8080/attach/upload");
 
    var request = http.MultipartRequest('POST', uri);
     var multipartFile = await http.MultipartFile.fromPath('file', imageFile.path,

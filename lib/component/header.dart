@@ -19,7 +19,7 @@ class Header extends StatelessWidget {
         children: [
           if (controller.isDesktop)
             Text(
-              "Home Page",
+              "home page".tr,
               style: MyTextStyle.textW600White20,
             ),
           Spacer(
@@ -32,15 +32,15 @@ class Header extends StatelessWidget {
                 borderRadius: BorderRadius.circular(defaultPadding / 1.5),
                 color: secondaryColor,
               ),
-              child: const Center(
+              child:  Center(
                 child: TextField(
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                   decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(10),
-                      hintText: "Search",
-                      hintStyle: TextStyle(color: Colors.grey),
+                      contentPadding: const EdgeInsets.all(10),
+                      hintText: "search".tr,
+                      hintStyle: const TextStyle(color: Colors.grey),
                       border: InputBorder.none,
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.search,
                         color: Colors.grey,
                       )),

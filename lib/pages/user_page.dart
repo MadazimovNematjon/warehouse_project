@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:warehouse_project/component/my_text_field.dart';
 import 'package:warehouse_project/controllers/user_contoller.dart';
 import 'package:warehouse_project/model/user_model.dart';
+import 'package:warehouse_project/pages/sign_in.dart';
 import 'package:warehouse_project/services/save_secure_storage.dart';
 import 'package:warehouse_project/utility/my_text_style.dart';
 
@@ -36,9 +37,9 @@ class _UserPageState extends State<UserPage> {
 
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "My Account",
-                style: TextStyle(
+               Text(
+                "my account".tr,
+                style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                     color: Colors.white
@@ -59,10 +60,10 @@ class _UserPageState extends State<UserPage> {
                   const SizedBox(height: 20,),
                   controller.hidden ?   TextField(
                     controller: controller.cityController,
-                    decoration: const InputDecoration(
+                    decoration:  InputDecoration(
                         border: InputBorder.none,
-                        hintText: "Name",
-                        hintStyle: TextStyle(color: Colors.grey)
+                        hintText: "name".tr,
+                        hintStyle: const TextStyle(color: Colors.grey)
                     ),
                   ):
                   Text( "${user.name}  ${user.surname} ",style: MyTextStyle.textW600White20,),
@@ -76,7 +77,7 @@ class _UserPageState extends State<UserPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Email:",style: TextStyle(color: Colors.grey,fontSize: 16.spMax),),
+                      Text("email".tr,style: TextStyle(color: Colors.grey,fontSize: 16.spMax),),
                       const SizedBox(width: 10,),
                       Expanded(child: Text(user.email!,style: MyTextStyle.textWhite16,maxLines: 1, overflow: TextOverflow.ellipsis,)),
                     ],
@@ -87,9 +88,9 @@ class _UserPageState extends State<UserPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("City:",style: TextStyle(color: Colors.grey,fontSize:  16.spMax),),
+                      Text("city:".tr,style: TextStyle(color: Colors.grey,fontSize:  16.spMax),),
                       const SizedBox(width: 10,),
-                      Text("Tashkent",style: MyTextStyle.textWhite16,),
+                      Text(" ",style: MyTextStyle.textWhite16,),
                     ],
                   ),
 
@@ -98,13 +99,32 @@ class _UserPageState extends State<UserPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Phone:",style: TextStyle(color: Colors.grey,fontSize:  16.spMax),),
+                      Text("phone:".tr,style: TextStyle(color: Colors.grey,fontSize:  16.spMax),),
                       const SizedBox(width: 10,),
-                      Expanded(child: Text("+998(99) 409-19-38",style: MyTextStyle.textWhite16,maxLines: 1, overflow: TextOverflow.ellipsis,)),
+                      Expanded(child: Text(" ",style: MyTextStyle.textWhite16,maxLines: 1, overflow: TextOverflow.ellipsis,)),
                     ],
                   ),
                 ],
+              ),
+              
+              SizedBox(height: 50,),
+              Center(
+                child: GestureDetector(
+                  onTap: (){
+                    Get.off(()=> const SignIn());
+                  },
+                  child: Container(
+                    width: 100,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Center(child: Text("log out".tr,style: MyTextStyle.textWhite16,)),
+                  ),
+                ),
               )
+              
             ],
           ),
         );

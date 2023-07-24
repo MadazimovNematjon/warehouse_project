@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:warehouse_project/controllers/notification_controller.dart';
 import 'package:warehouse_project/controllers/product-ownership.dart';
+import 'package:warehouse_project/controllers/transaction_historiy_controller.dart';
 import 'package:warehouse_project/model/notification_product.dart';
 import 'package:warehouse_project/model/product_model.dart';
 import 'package:warehouse_project/pages/create_data_page.dart';
@@ -17,10 +18,10 @@ class AlterDialogController extends GetxController {
     showDialog(
         context: context,
         builder: (_) {
-          return const AlertDialog(
+          return  AlertDialog(
             backgroundColor: secondaryColor,
             title: Text(
-              "Upload file",
+              "create product".tr,
               style: TextStyle(color: Colors.white),
             ),
             content: CreateData(),
@@ -32,10 +33,10 @@ class AlterDialogController extends GetxController {
     showDialog(
         context: context,
         builder: (_) {
-          return const AlertDialog(
+          return  AlertDialog(
             backgroundColor: secondaryColor,
             title: Text(
-              "Transaction",
+              "transaction".tr,
               style: TextStyle(color: Colors.white),
             ),
             content: TransactionPage(),
@@ -66,7 +67,7 @@ class AlterDialogController extends GetxController {
         return AlertDialog(
           backgroundColor: secondaryColor,
           title: Text(
-            "Notification Products",
+            "transfers".tr,
             style: TextStyle(color: Colors.white),
           ),
           content: Container(
@@ -108,6 +109,8 @@ class AlterDialogController extends GetxController {
       // Close the current dialog and immediately show the updated dialog with the new content
       final dialogContext = Get.overlayContext;
       Navigator.of(dialogContext!).pop(); // Close the current dialog
+      Get.find<TransactionHistoryController>().fetchContentData();
+      Get.find<ProductOwnershipController>().fetchContentData();
       // Show the updated dialog with the new content
       showItemNotificationAlterDialog(dialogContext, notificationController.items);
     }

@@ -36,24 +36,24 @@ class _SignUpState extends State<SignUp> {
                           MyTextField(
                               controller: controller.firstNameController,
                               icon: FontAwesome.user,
-                              hintText: "First Name"),
+                              hintText: "first name".tr),
                           MyTextField(
                               controller: controller.lastNameController,
                               icon: FontAwesome.user,
-                              hintText: "Last Name"),
+                              hintText: "last name".tr),
                           MyTextField(
                               controller: controller.gmailController,
                               icon: Icons.email_outlined,
-                              hintText: "Gmail"),
+                              hintText: "email:".tr ),
                           MyTextField(
                               controller: controller.passwordController,
                               icon: Bootstrap.key,
-                              hintText: "Password",
+                              hintText: "password".tr,
                               passwordIcon: true),
                           MyTextField(
                               controller: controller.againPasswordController,
                               icon: Bootstrap.key,
-                              hintText: "Again Password",
+                              hintText: "again password".tr,
                               passwordIcon: true),
 
 
@@ -63,13 +63,13 @@ class _SignUpState extends State<SignUp> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              const Text("Do you have an account?",
-                                style: TextStyle(
+                               Text("do you have an account ?".tr,
+                                style: const TextStyle(
                                     fontSize: 16, color: Colors.grey),),
                               TextButton(onPressed: () {
                                 Get.off(const SignIn());
                               },
-                                child: const Text("Sign In", style: TextStyle(
+                                child:  Text("sign in".tr, style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700,
                                     color: primaryColor),),
@@ -84,7 +84,8 @@ class _SignUpState extends State<SignUp> {
                             onTap: controller.doSignUp,
                             child: Container(
                               height: 45,
-                              width: 150,
+                              // width: 150,
+                              margin: EdgeInsets.only(left: 50,right: 50),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   gradient: const LinearGradient(
@@ -96,8 +97,8 @@ class _SignUpState extends State<SignUp> {
                                       ]
                                   )
                               ),
-                              child: const Center(
-                                child: Text("Sign Up", style: TextStyle(
+                              child:  Center(
+                                child: Text('sign up'.tr, style: const TextStyle(
                                     fontSize: 18,
                                     color: Colors.white,
                                     fontWeight: FontWeight.w900),),

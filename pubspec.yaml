@@ -36,7 +36,9 @@ dependencies:
   multi_dropdown: ^2.0.1
   searchfield: ^0.8.3
   rxdart: ^0.27.1
-  simple_email_sender: ^0.0.5
+  connectivity_plus: ^4.0.1
+  ping_discover_network_forked: ^0.0.1
+  dart_ping: ^8.0.1
 
 dev_dependencies:
   flutter_test:

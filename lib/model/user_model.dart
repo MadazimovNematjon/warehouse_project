@@ -1,42 +1,73 @@
+// To parse this JSON data, do
+//
+//     final userModel = userModelFromJson(jsonString);
+
+import 'dart:convert';
+
+UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
+
+String userModelToJson(UserModel data) => json.encode(data.toJson());
+
 class UserModel {
-  String? id;
-  String? name;
-  String? surname;
-  String? email;
-  String? password;
-  String? status;
-  String? role;
-  String? visible;
-  String? createdDate;
+  final String? name;
+  final String? surname;
+  final String? password;
+  final String? role;
+  final String? token;
+  final int? id;
+  final String? email;
+  final String? imageUrl;
+  final String? phone;
+  final String? city;
+  final String? status;
+  final bool? visible;
+  final DateTime? createdDate;
 
   UserModel({
     this.name,
     this.surname,
-    required this.email,
     this.password,
+    this.role,
+    this.token,
+    this.id,
+    this.email,
+    this.imageUrl,
+    this.phone,
+    this.city,
+    this.status,
+    this.visible,
     this.createdDate,
   });
 
-  UserModel.fromJson(Map<String, dynamic> json)
-      : id = json["id"].toString(),
-        name = json["name"],
-        surname = json["surname"],
-        email = json["email"],
-        password = json["password"],
-        status = json["status"],
-        role = json["role"],
-        visible = json["visible"].toString(),
-        createdDate = json["createdDate"].toString();
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+    name: json["name"],
+    surname: json["surname"],
+    password: json["password"],
+    role: json["role"],
+    token: json["token"],
+    id: json["id"],
+    email: json["email"],
+    imageUrl: json["image_url"],
+    phone: json["phone"],
+    city: json["city"],
+    status: json["status"],
+    visible: json["visible"],
+    createdDate: json["createdDate"] == null ? null : DateTime.parse(json["createdDate"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "surname": surname,
-        "email": email,
-        "password": password,
-        "status": status,
-        "role": role,
-        "visible": visible,
-        "createdDate": createdDate,
-      };
+    "name": name,
+    "surname": surname,
+    "password" : password,
+    "role": role,
+    "token": token,
+    "id": id,
+    "email": email,
+    "image_url": imageUrl,
+    "phone": phone,
+    "city": city,
+    "status": status,
+    "visible": visible,
+    "createdDate": createdDate?.toIso8601String(),
+  };
 }

@@ -12,6 +12,8 @@ import 'package:warehouse_project/controllers/sign_up_controller.dart';
 import 'package:warehouse_project/controllers/transaction_controller.dart';
 import 'package:warehouse_project/controllers/user_contoller.dart';
 import '../controllers/grid_view_controller.dart';
+import '../controllers/network_controller.dart';
+import '../controllers/transaction_historiy_controller.dart';
 
 class DIService {
 
@@ -30,5 +32,7 @@ class DIService {
     Get.lazyPut<AlterDialogController>(() => AlterDialogController(), fenix: true);
     Get.lazyPut<NotificationController>(() => NotificationController(), fenix: true);
     Get.lazyPut<ProductOwnershipController>(() => ProductOwnershipController(), fenix: true);
+    Get.lazyPut<TransactionHistoryController>(() => TransactionHistoryController(), fenix: true);
+    Get.lazyPut<NetworkController>(() => NetworkController(), fenix: true);
   }
 }

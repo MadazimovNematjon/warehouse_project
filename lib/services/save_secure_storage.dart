@@ -18,6 +18,7 @@ class SecureStorage{
     // Save the JSON string in secure storage
     await storage.write(key: 'data', value: jsonString);
     LogService.i("Saved Account");
+
   }
 
 
